@@ -1,0 +1,16 @@
+d:\Work\IHS\dotNET\Utility\ResxToJS\bin\Release\ResxToJS.exe.config
+d:\Work\IHS\dotNET\Utility\ResxToJS\bin\Release\ResxToJS.exe
+d:\Work\IHS\dotNET\Utility\ResxToJS\bin\Release\ResxToJS.pdb
+d:\Work\IHS\dotNET\Utility\ResxToJS\bin\Release\Newtonsoft.Json.dll
+d:\Work\IHS\dotNET\Utility\ResxToJS\bin\Release\Newtonsoft.Json.xml
+d:\Work\IHS\dotNET\Utility\ResxToJS\obj\x86\Release\ResxToJS.csprojResolveAssemblyReference.cache
+d:\Work\IHS\dotNET\Utility\ResxToJS\obj\x86\Release\ResxToJS.exe
+d:\Work\IHS\dotNET\Utility\ResxToJS\obj\x86\Release\ResxToJS.pdb
+d:\Projects\ELine\Utility\ResxToJS\bin\Release\ResxToJS.exe.config
+d:\Projects\ELine\Utility\ResxToJS\obj\x86\Release\ResxToJS.exe
+d:\Projects\ELine\Utility\ResxToJS\obj\x86\Release\ResxToJS.pdb
+d:\Projects\ELine\Utility\ResxToJS\bin\Release\ResxToJS.exe
+d:\Projects\ELine\Utility\ResxToJS\bin\Release\ResxToJS.pdb
+d:\Projects\ELine\Utility\ResxToJS\bin\Release\Newtonsoft.Json.dll
+d:\Projects\ELine\Utility\ResxToJS\bin\Release\Newtonsoft.Json.xml
+d:\Projects\ELine\Utility\ResxToJS\obj\x86\Release\ResxToJS.csprojResolveAssemblyReference.cache
