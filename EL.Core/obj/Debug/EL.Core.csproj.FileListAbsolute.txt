@@ -1,5 +1,0 @@
-D:\Projects\ELine\EL.Core\bin\Debug\EL.Core.dll
-D:\Projects\ELine\EL.Core\bin\Debug\EL.Core.pdb
-D:\Projects\ELine\EL.Core\obj\Debug\EL.Core.csprojResolveAssemblyReference.cache
-D:\Projects\ELine\EL.Core\obj\Debug\EL.Core.dll
-D:\Projects\ELine\EL.Core\obj\Debug\EL.Core.pdb
