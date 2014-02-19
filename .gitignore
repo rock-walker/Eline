@@ -1,0 +1,4 @@
+bin/
+obj/
+EL.Server/Web.config
+*.suo

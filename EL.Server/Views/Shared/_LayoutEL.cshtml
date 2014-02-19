@@ -73,9 +73,7 @@
                 error: '@Html.JsString(Url.Action("Error", "Account", new {module = ViewData["module"]}) + String.Format("?returnurl={0}", HttpUtility.UrlEncode(Url.Action("Index", "App", new {module = ViewData["module"]}))))',
                 baseUrl: '@Html.JsString(Url.Content("~/" + ViewData["module"] + "/"))App'
             };
-            var val = "sss1";
-            var ret = val.RemoveDuplicates("s");
-            alert(ret);
+
             el.register('dateFormatter', el.Date, 'singleton', {
                 'days': '@Html.JsString((string)ViewBag.DayNames)',
                 'months': '@Html.JsString((string)ViewBag.MonthNames)',
@@ -84,7 +82,6 @@
                 'template':'@Html.JsString((string)ViewBag.DateTimeTemplate)'
             });
 
-            
             App.init();
             App.initBxSlider();
             Index.initRevolutionSlider();

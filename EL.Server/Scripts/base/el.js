@@ -286,7 +286,7 @@ if (String.prototype.RemoveDuplicates == undefined) {
 }
 
 (function ($, undefined) {
-    alert(1);
+
     window.el = $.extend(window.el, {
         '_typeRegistrations': {},
         '_typeRegistrationsParams': {},
