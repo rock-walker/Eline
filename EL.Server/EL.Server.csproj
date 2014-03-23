@@ -42,6 +42,14 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\packages\WebGrease.1.0.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
@@ -332,7 +340,6 @@
     <Content Include="Content\front\img\works\img5.jpg" />
     <Content Include="Content\front\img\works\img6.jpg" />
     <Content Include="Content\front\plugins\animated-header\cbpAnimatedHeader.js" />
-    <Content Include="Content\front\plugins\animated-header\cbpAnimatedHeader.min.js" />
     <Content Include="Content\front\plugins\animated-header\classie.js" />
     <Content Include="Content\front\plugins\back-to-top.js" />
     <Content Include="Content\front\plugins\bootstrap\css\bootstrap-theme.css" />
@@ -341,7 +348,6 @@
     <Content Include="Content\front\plugins\bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\front\plugins\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\front\plugins\bootstrap\js\bootstrap.js" />
-    <Content Include="Content\front\plugins\bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\front\plugins\bxslider\images\bx_loader.gif" />
     <Content Include="Content\front\plugins\bxslider\images\left-hover.png" />
     <Content Include="Content\front\plugins\bxslider\images\left.png" />
@@ -387,10 +393,11 @@
     <Content Include="Content\front\plugins\flexslider\jquery.flexslider-min.js" />
     <Content Include="Content\front\plugins\flexslider\jquery.flexslider.js" />
     <Content Include="Content\front\plugins\font-awesome\css\font-awesome.css" />
-    <Content Include="Content\front\plugins\font-awesome\css\font-awesome.min.css" />
     <Content Include="Content\front\plugins\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\front\plugins\hover-dropdown.js" />
+    <Content Include="Scripts\base\date.js" />
     <Content Include="Scripts\base\el.js" />
+    <Content Include="Scripts\controllers\Categories.js" />
     <Content Include="Scripts\thirdParty\jquery-1.11.0.js" />
     <Content Include="Scripts\thirdParty\jquery-migrate-1.2.1.js" />
     <Content Include="Scripts\thirdParty\jquery.mixitup.min.js" />
@@ -534,11 +541,15 @@
     <Content Include="Content\front\plugins\uniform\README.textile" />
     <Content Include="Scripts\base\elapp.js" />
     <Content Include="Scripts\main.js" />
-    <Content Include="Scripts\models\Categories.js" />
+    <Content Include="Scripts\models\Category.js" />
     <Content Include="Scripts\resources\Constants.js" />
     <Content Include="Scripts\resources\Resources.en-US.js" />
     <Content Include="Scripts\thirdParty\backbone.js" />
+    <Content Include="Scripts\thirdParty\json2.js" />
     <Content Include="Scripts\thirdParty\underscore.js" />
+    <Content Include="Scripts\views\AppHeader.js" />
+    <Content Include="Scripts\views\Category.js" />
+    <Content Include="Scripts\views\homeTemplates.htm" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -567,8 +578,6 @@
     <Folder Include="Areas\ServiceRoom\Models\" />
     <Folder Include="Areas\ServiceRoom\Views\Shared\" />
     <Folder Include="Models\" />
-    <Folder Include="Scripts\controllers\" />
-    <Folder Include="Scripts\views\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

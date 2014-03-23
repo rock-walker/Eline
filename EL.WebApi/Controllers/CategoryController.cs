@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Text;
-using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using System.Web.WebSockets;
 using EL.EntityModels;
 using System.Collections.Generic;
@@ -14,13 +14,20 @@ namespace EL.WebApi.Controllers
 	public class CategoryController : ApiController
 	{
 		readonly CategoryContext _ctxCategory = new CategoryContext();
-		// GET api/category
-		public ICollection<Category> Get()
+
+		[ActionName("hierarchical")]
+		public ICollection<Category> GetHierarchical()
 		{
 			var categories = _ctxCategory.Categories.ToList();
 			var builtCategories = MenuBuilder.BuildCategoriesHierarchy(categories, 0);
 
 			return (ICollection<Category>) builtCategories;
+		}
+
+		// GET api/category
+		public ICollection<Category> Get()
+		{
+			return _ctxCategory.Categories.ToList();
 		}
 
 		// GET api/values/5

@@ -699,7 +699,7 @@ if (String.prototype.RemoveDuplicates == undefined) {
                 break;
             }
 
-        },
+        }
     });
 })(jQuery);
 
@@ -864,14 +864,3 @@ el.define("el.ViewModelBase", null, {
 		}
 	}
 });
-
-//var obj = new el.ViewModelBase('id', { 'temp': 'hello' });
-//obj.typeof = 'M\'e';
-//obj.age = 5;
-//obj.legacy = true;
-//obj.head = { 'name': 'He"llo', 'time': 4.6, 'inner':{ 'name': 'He"llo', 'time': 4.6, 'inner2':{ 'name': 'He"llo', 'time': 4.6 } } };
-//obj.arr = [1, 2, 3, 4, 5];
-//obj.arr2 = [{ 'me': true }, { 'me2': null}];
-//obj.arr3 = [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5]];
-//var json = obj.toJSON();
-//alert(json + "\n" + JSON.stringify(obj));

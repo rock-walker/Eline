@@ -7,40 +7,9 @@
 }
 @section Header {
     <head>
-        <meta charset="utf-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <meta content="" name="description" />
-        <meta content="" name="author" />
-
-        <!-- BEGIN GLOBAL MANDATORY STYLES -->
-        <!--
-            <link href="Content/front/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-            <link href="Content/front/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-            -->
-       <!-- END GLOBAL MANDATORY STYLES -->
-   
-        <!-- BEGIN PAGE LEVEL PLUGIN STYLES --> 
-        <!--
-            <link href="Content/front/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
-            -->
-       <link rel="stylesheet" href="Content/front/plugins/revolution_slider/css/rs-style.css" media="screen">
+        @Styles.Render("~/cssBundle/frontHome")
+        <link rel="stylesheet" href="Content/front/plugins/revolution_slider/css/rs-style.css" media="screen">
         <link rel="stylesheet" href="Content/front/plugins/revolution_slider/rs-plugin/css/settings.css" media="screen"> 
-        <!--
-        <link href="Content/front/plugins/bxslider/jquery.bxslider.css" rel="stylesheet" />
-       <!-- END PAGE LEVEL PLUGIN STYLES -->
-
-       <!-- BEGIN THEME STYLES (includ them in bundle)--> 
-        <!--<link href="Content/front/css/style-metronic.css" rel="stylesheet" type="text/css"/>
-            <link href="Content/front/css/style.css" rel="stylesheet" type="text/css"/>-->
-
-        <link href="/Content/front/css/themes/red.css" rel="stylesheet" type="text/css" id="style_color"/>
-
-       <!--<link href="Content/front/css/style-responsive.css" rel="stylesheet" type="text/css"/>
-       <link href="Content/front/css/custom.css" rel="stylesheet" type="text/css"/>-->
-       <!-- END THEME STYLES -->
-
-       <link rel="shortcut icon" href="favicon.ico" />
-
         <title>@ElResources.ResourceManager.GetString(ViewData["Title"].ToString(), ElResources.Culture)</title>
         @Header.Insert(Url)
         @L10n.Insert(Server, (ViewData["locale"] ?? string.Empty).ToString(), (ViewData["resourceTemplate"] ?? string.Empty).ToString(), Url)
@@ -57,15 +26,15 @@
     <!--[if lt IE 9]>
         <script src="Content/front/plugins/respond.min.js"></script>
     <![endif]-->  
-    @Scripts.Render("~/jsBundle/front")
+    @Scripts.Render("~/jsBundle/base", "~/jsBundle/front")
     <script type="text/javascript">
-        jQuery(document).ready(function () {
+        jQuery(document).ready(function() {
 
             elapp.defaults = {
                 appBuild: '@Html.JsStringHtml(WebConfigurationManager.AppSettings["Build"] ?? "")',
                 customerSupportEmail: '@Html.JsStringHtml(WebConfigurationManager.AppSettings["SupportEmail"] ?? "")',
                 customerCareUrl: '@Html.JsStringHtml(ViewData["CustomerCareUrl"].ToString())',
-                searchTimeout: '@Html.JsStringHtml((ViewData["pages.FactFinder.SearchTimeout"]??"0").ToString())',
+                searchTimeout: '@Html.JsStringHtml((ViewData["pages.FactFinder.SearchTimeout"] ?? "0").ToString())',
                 translations: @Html.Raw(JsonPacket.Compose(ViewData["Translation"]))
             };
             elapp.urls = {
@@ -74,18 +43,25 @@
                 baseUrl: '@Html.JsString(Url.Content("~/" + ViewData["module"] + "/"))App'
             };
 
-            el.register('dateFormatter', el.Date, 'singleton', {
-                'days': '@Html.JsString((string)ViewBag.DayNames)',
-                'months': '@Html.JsString((string)ViewBag.MonthNames)',
-                'daysMin': '@Html.JsString((string)ViewBag.AbbrDayNames)',
-                'monthsMin': '@Html.JsString((string)ViewBag.AbbrMonthNames)',
-                'template':'@Html.JsString((string)ViewBag.DateTimeTemplate)'
-            });
+            if (window.el == undefined)
+                console.log('el is not defined in LayoutEL');
+            else
+                el.register('dateFormatter', el.Date, 'singleton', {
+                    'days': '@Html.JsString((string) ViewBag.DayNames)',
+                    'months': '@Html.JsString((string) ViewBag.MonthNames)',
+                    'daysMin': '@Html.JsString((string) ViewBag.AbbrDayNames)',
+                    'monthsMin': '@Html.JsString((string) ViewBag.AbbrMonthNames)',
+                    'template': '@Html.JsString((string) ViewBag.DateTimeTemplate)'
+                });
 
+            App.buildUi();
+            /*
             App.init();
             App.initBxSlider();
+            */
             Index.initRevolutionSlider();
         });
     </script>
+
     <!-- END PAGE LEVEL JAVASCRIPTS -->
 }
