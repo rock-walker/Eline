@@ -345,7 +345,6 @@
     <Content Include="Content\front\plugins\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Content\front\plugins\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="Content\front\plugins\bootstrap\css\bootstrap.css" />
-    <Content Include="Content\front\plugins\bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\front\plugins\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\front\plugins\bootstrap\js\bootstrap.js" />
     <Content Include="Content\front\plugins\bxslider\images\bx_loader.gif" />
@@ -550,7 +549,9 @@
     <Content Include="Scripts\views\AppHeader.js" />
     <Content Include="Scripts\views\Category.js" />
     <Content Include="Scripts\views\homeTemplates.htm" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
