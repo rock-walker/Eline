@@ -26,7 +26,7 @@ namespace EL.EntityModels
 	[Table("Category")]
 	public class Category : BaseCategory
 	{
-		public virtual string Name { get; set; }
+		public virtual string Title { get; set; }
 		public virtual string Link { get; set; }
 	}
 }
