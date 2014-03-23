@@ -5,6 +5,7 @@ var App = function () {
     var isIE8 = false;
     var isIE9 = false;
     var isIE10 = false;
+    var appHeader;
 
     var handleInit = function() {
 
@@ -15,11 +16,13 @@ var App = function () {
         isIE8 = !! navigator.userAgent.match(/MSIE 8.0/);
         isIE9 = !! navigator.userAgent.match(/MSIE 9.0/);
         isIE10 = !! navigator.userAgent.match(/MSIE 10.0/);
-        
+
         if (isIE10) {
             jQuery('html').addClass('ie10'); // detect IE10 version
         }
-    }
+
+        console.log('handle main init');
+    };
 
     function handleIEFixes() {
         //fix html5 placeholder attribute for ie7 & ie8
@@ -107,7 +110,7 @@ var App = function () {
             return;
         }
 
-        if (jQuery(".fancybox-button").size() > 0) {            
+        if (jQuery(".fancybox-button").size() > 0) {
             jQuery(".fancybox-button").fancybox({
                 groupAttr: 'data-rel',
                 prevEffect: 'none',
@@ -222,7 +225,11 @@ var App = function () {
 			}
 		});
 		
-	}
+    }
+
+    var handleBuildUi = function () {
+        appHeader = new AppHeader;
+    }
 	
     return {
         init: function () {
@@ -234,6 +241,14 @@ var App = function () {
 			handleTheme(); // handles style customer tool
             handleFancybox();
 			handleFixedHeader();
+        },
+
+        initSearch: function() {
+            handleSearch();
+        },
+
+        buildUi: function() {
+            handleBuildUi();
         },
 
         initUniform: function (els) {

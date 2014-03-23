@@ -104,7 +104,10 @@
             x: null,
             y: null
         };
-    $(document).ready(function() {
+
+    Backbone.on('menu:built', applyDropdownHover);
+
+    function applyDropdownHover() {
         // apply dropdownHover to all elements with the data-hover="dropdown" attribute
         $('[data-hover="dropdown"]').dropdownHover();
 
@@ -120,7 +123,7 @@
                 mouse_info.y = e.pageY;
             }
         });
-    });
+    };
 
     // for the submenu to close on delay, we need to override Bootstrap's CSS in this case
     var css = '.dropdown-submenu:hover>.dropdown-menu{display:none}';
