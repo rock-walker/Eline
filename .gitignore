@@ -1,6 +1,6 @@
 bin/
 obj/
 EL.Server/Web.config
-*.mdf
-*.ldf
 *.suo
+*.ldf
+*.mdf
