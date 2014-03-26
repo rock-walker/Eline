@@ -59,6 +59,7 @@ namespace EL.Server
 				.IncludeDirectory("~/Content/front/plugins/flexslider", "*.js", true)
 				.IncludeDirectory("~/Content/front/plugins/revolution_slider", "*.js", true)
 				.IncludeDirectory("~/Content/front/plugins/uniform", "*.js", true)
+				.IncludeDirectory("~/Content/front/plugins/gmaps", "*.js", true)
 				.Include("~/Content/front/plugins/back-to-top.js")
 				.Include("~/Content/front/plugins/hover-dropdown.js"));
 		}
