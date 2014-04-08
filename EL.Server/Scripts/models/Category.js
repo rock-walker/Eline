@@ -5,18 +5,11 @@
             Link: "/",
             Parent: 0,
             SubCategories: null,
+            Id: 0
         };
+    },
+
+    active: function() {
+        return this.IsActive();
     }
 });
-
-var CategoryList = Backbone.Collection.extend({
-    model: CategoryItem,
-    url: 'api/category/hierarchical'
-
-    /* very interesting using of without: need additional experience
-    remaining: function () {
-        return this.without.apply(this, this.done());
-    },*/
-});
-
-var Categories = new CategoryList;

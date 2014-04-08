@@ -35,11 +35,20 @@ namespace EL.WebApi
 				defaults: new { id = RouteParameter.Optional, action="get" }
 			);
 			*/
+
+			routes.MapHttpRoute(
+				"MapRoute",
+				"api/map/{id}",
+				new { module="api", controller = "map", id = RouteParameter.Optional }	
+			);
+			
 			routes.MapHttpRoute(
 				name: "DefaultApiWithAction",
-				routeTemplate: "api/{controller}/{action}/{id}",
-				defaults: new { id = RouteParameter.Optional, action="get" }
+				routeTemplate: "api/category/{action}/{id}",
+				defaults: new { controller = "category", id = RouteParameter.Optional, action="get" }
 			);
+			
+			
 		}
 		
 		private void Initialize()

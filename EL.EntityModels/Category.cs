@@ -7,9 +7,7 @@ namespace EL.EntityModels
 {
 	public class CategoryContext : DbContext
 	{
-		public CategoryContext() : base("LineConnection")
-		{
-		}
+		public CategoryContext() : base("LineConnection"){}
 
 		public DbSet<Category> Categories { get; set; }
 	}
@@ -20,7 +18,8 @@ namespace EL.EntityModels
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public virtual int Id { get; set; }
 		public virtual int Parent { get; set; }
-		public virtual IEnumerable<BaseCategory> SubCategories { get; set; } 
+		public virtual IEnumerable<BaseCategory> SubCategories { get; set; }
+		public virtual IEnumerable<Marker> Markers { get; set; } 
 	}
 
 	[Table("Category")]

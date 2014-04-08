@@ -5,6 +5,11 @@
     categoryLevel0: elapp.renderTmpl('homeTemplates', "#category-zero-level-template"),
     categoryLevel1: elapp.renderTmpl('homeTemplates', "#category-first-level-template"),
 
+    events: {
+        'click': '_selectCategory'
+    },
+    stationeryObjects: null,
+
     initialize: function(options) {
         this.isActive = options.isActive;
 
@@ -21,6 +26,8 @@
         if (level === 0) {
             this.$el.html(this.categoryLevel0(renderNavModel.toJSON()));
             this.$el.toggleClass('active', this.isActive);
+            if (this.isActive)
+                this._selectCategory();
         } else {
             this.$("ul.dropdown-menu").append(this.categoryLevel1(renderNavModel.toJSON()));
         }
@@ -34,6 +41,17 @@
         }
 
         return this;
+    },
+
+    _selectCategory: function (event) {
+        this.model.set('isActive', true);
+        this._setCurrentCategory();
+        return false;
+    },
+
+    _setCurrentCategory: function (id) {
+        var serviceId = id || this.model.get('Id');
+        appState.set('currentCategory', serviceId);
     },
 
     clear: function() {

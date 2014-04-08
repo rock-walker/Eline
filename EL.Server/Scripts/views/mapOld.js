@@ -1,10 +1,10 @@
-﻿var Map = function () {
+﻿var Map = $(function() {
 
     return {
         //main function to initiate the module
-        init: function () {
+        init: function() {
             var map;
-            $(document).ready(function () {
+            $(document).ready(function() {
                 map = new GMaps({
                     div: '#map',
                     lat: -13.004333,
@@ -24,4 +24,4 @@
         }
     };
 
-}();
+});

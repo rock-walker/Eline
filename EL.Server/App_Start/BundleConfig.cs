@@ -46,8 +46,9 @@ namespace EL.Server
 
 				.IncludeDirectory("~/Scripts/views", "*.js", true)
 				.IncludeDirectory("~/Scripts/resources", "*.js", true)
+				.IncludeDirectory("~/Scripts/compositeViews", "*.js", true)
 				.IncludeDirectory("~/Scripts/models", "*.js", true)
-				.IncludeDirectory("~/Scripts/controllers", "*.js", true)
+				.IncludeDirectory("~/Scripts/collections", "*.js", true)
 				.ForceOrdered());
 
 			bundles.Add(new ScriptBundle("~/jsBundle/front")

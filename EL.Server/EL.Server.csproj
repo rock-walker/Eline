@@ -63,6 +63,9 @@
     <Reference Include="Microsoft.Practices.Unity.Mvc">
       <HintPath>..\packages\Unity.Mvc.3.0.1304.0\lib\Net45\Microsoft.Practices.Unity.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="RouteDebugger">
+      <HintPath>..\packages\routedebugger.2.1.4.0\lib\net40\RouteDebugger.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -412,7 +415,11 @@
     <Content Include="Content\front\plugins\hover-dropdown.js" />
     <Content Include="Scripts\base\date.js" />
     <Content Include="Scripts\base\el.js" />
-    <Content Include="Scripts\controllers\Categories.js" />
+    <Content Include="Scripts\collections\Category.js" />
+    <Content Include="Scripts\collections\GeoMarker.js" />
+    <Content Include="Scripts\compositeViews\Map.js" />
+    <Content Include="Scripts\models\ElineState.js" />
+    <Content Include="Scripts\models\geoMarker.js" />
     <Content Include="Scripts\thirdParty\jquery-1.11.0.js" />
     <Content Include="Scripts\thirdParty\jquery-migrate-1.2.1.js" />
     <Content Include="Scripts\thirdParty\jquery.mixitup.min.js" />
@@ -555,16 +562,17 @@
     <Content Include="Content\front\plugins\uniform\css\uniform.default.scss" />
     <Content Include="Content\front\plugins\uniform\README.textile" />
     <Content Include="Scripts\base\elapp.js" />
-    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\models\Category.js" />
     <Content Include="Scripts\resources\Constants.js" />
     <Content Include="Scripts\resources\Resources.en-US.js" />
     <Content Include="Scripts\thirdParty\backbone.js" />
     <Content Include="Scripts\thirdParty\json2.js" />
     <Content Include="Scripts\thirdParty\underscore.js" />
-    <Content Include="Scripts\views\AppHeader.js" />
+    <Content Include="Scripts\compositeViews\AppHeader.js" />
     <Content Include="Scripts\views\Category.js" />
+    <Content Include="Scripts\views\Marker.js" />
     <Content Include="Scripts\views\homeTemplates.htm" />
+    <Content Include="Scripts\views\mapOld.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
