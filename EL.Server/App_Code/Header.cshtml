@@ -1,0 +1,21 @@
+﻿@using System.Web.Mvc;
+@using System.Web.Optimization
+
+@helper Insert(UrlHelper url)
+{
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1.0"/> <!--initial-scale=1.0 - proposed by "metronic"-->
+    <meta content="Electronic line" name="description" />
+    <meta content="P2P Services" name="author" />
+	<meta name="google" value="notranslate">
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="revision" content="~svnrev~" />
+    <meta name="build-date" content="~build-date~" />
+    
+    <link href="@url.Content("~/favicon.ico")" rel="shortcut icon" type="image/x-icon" />
+    @Styles.Render("~/Content/bootstrap")
+    <link rel="stylesheet" href="Content/front/css/style.css"  type="text/css"/>
+    @Styles.Render("~/cssBundle/metronic")
+}

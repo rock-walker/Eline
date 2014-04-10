@@ -1,0 +1,7 @@
+bin/
+obj/
+EL.Server/Web.config
+*.suo
+*.ldf
+*.mdf
+EL.Server/App_Data/LineDB.mdf

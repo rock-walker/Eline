@@ -1,0 +1,68 @@
+﻿@using System.Web.Optimization
+@using System.Web.Configuration;
+@using EL.Logic.ViewHelpers;
+@using EL.Server.Views.App_LocalResources;
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Header {
+    <head>
+        @Styles.Render("~/cssBundle/frontHome")
+        <link rel="stylesheet" href="Content/front/plugins/revolution_slider/css/rs-style.css" media="screen">
+        <link rel="stylesheet" href="Content/front/plugins/revolution_slider/rs-plugin/css/settings.css" media="screen"> 
+        <title>@ElResources.ResourceManager.GetString(ViewData["Title"].ToString(), ElResources.Culture)</title>
+        @Header.Insert(Url)
+        @L10n.Insert(Server, (ViewData["locale"] ?? string.Empty).ToString(), (ViewData["resourceTemplate"] ?? string.Empty).ToString(), Url)
+    </head>
+}
+@RenderBody()
+@section TopMenu
+{
+    @Html.Partial("~/Views/Front/TopMenu.cshtml")
+}
+@section JsLoader{
+    <!-- Load javascripts at bottom, this will reduce page load time -->
+    <!-- BEGIN CORE PLUGINS(REQUIRED FOR ALL PAGES) -->
+    <!--[if lt IE 9]>
+        <script src="Content/front/plugins/respond.min.js"></script>
+    <![endif]-->
+    <script src="http://maps.google.com/maps/api/js?sensor=true&language=ru" type="text/javascript"></script>
+    @Scripts.Render("~/jsBundle/base", "~/jsBundle/front")
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+
+            elapp.defaults = {
+                appBuild: '@Html.JsStringHtml(WebConfigurationManager.AppSettings["Build"] ?? "")',
+                customerSupportEmail: '@Html.JsStringHtml(WebConfigurationManager.AppSettings["SupportEmail"] ?? "")',
+                customerCareUrl: '@Html.JsStringHtml(ViewData["CustomerCareUrl"].ToString())',
+                searchTimeout: '@Html.JsStringHtml((ViewData["pages.FactFinder.SearchTimeout"] ?? "0").ToString())',
+                translations: @Html.Raw(JsonPacket.Compose(ViewData["Translation"]))
+            };
+            elapp.urls = {
+                logout: '@Html.JsString(Url.Action("logoff", "Account", new {module = ViewData["module"]}))',
+                error: '@Html.JsString(Url.Action("Error", "Account", new {module = ViewData["module"]}) + String.Format("?returnurl={0}", HttpUtility.UrlEncode(Url.Action("Index", "App", new {module = ViewData["module"]}))))',
+                baseUrl: '@Html.JsString(Url.Content("~/" + ViewData["module"] + "/"))App'
+            };
+
+            if (window.el == undefined)
+                console.log('el is not defined in LayoutEL');
+            else
+                el.register('dateFormatter', el.Date, 'singleton', {
+                    'days': '@Html.JsString((string) ViewBag.DayNames)',
+                    'months': '@Html.JsString((string) ViewBag.MonthNames)',
+                    'daysMin': '@Html.JsString((string) ViewBag.AbbrDayNames)',
+                    'monthsMin': '@Html.JsString((string) ViewBag.AbbrMonthNames)',
+                    'template': '@Html.JsString((string) ViewBag.DateTimeTemplate)'
+                });
+
+            App.buildUi();
+            /*
+            App.init();
+            App.initBxSlider();
+            */
+            Index.initRevolutionSlider();
+        });
+    </script>
+
+    <!-- END PAGE LEVEL JAVASCRIPTS -->
+}

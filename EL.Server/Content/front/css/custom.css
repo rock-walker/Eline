@@ -1,0 +1,16 @@
+/* here you can put your own css to customize and override the theme */
+.realService {
+    width: 50%;
+    border: 1px solid black;
+    float: left;
+}
+.realHeader {
+    border: 1px solid aqua;
+}
+.movableHeader {
+    border: 1px solid aqua;
+}
+.movableService {
+    border: 3px solid aqua;
+    margin-left: 50%;
+}
