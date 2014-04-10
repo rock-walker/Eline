@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using EL.EntityModels;
 
@@ -19,9 +17,12 @@ namespace EL.WebApi.Controllers
 
 	    public ICollection<Marker> Get(int id)
 	    {
-			return _ctxMap.Map
-						.Where(x => x.CategoryId == id)
-						.ToList();
+			var markers = _ctxMap.Map
+				.Where(x => x.CategoryId == id
+							|| x.Category.Parent == id)
+				.ToList();
+
+			return markers;
 	    }
     }
 }

@@ -4,12 +4,11 @@
 
     categoryLevel0: elapp.renderTmpl('homeTemplates', "#category-zero-level-template"),
     categoryLevel1: elapp.renderTmpl('homeTemplates', "#category-first-level-template"),
-
+    
     events: {
         'click': '_selectCategory'
     },
-    stationeryObjects: null,
-
+    
     initialize: function(options) {
         this.isActive = options.isActive;
 
@@ -18,9 +17,9 @@
         this.listenTo(this.model, 'destroy', this.remove);
     },
 
-    render: function (subModel) {
+    render: function (subView) {
 
-        var renderNavModel = subModel || this.model;
+        var renderNavModel = subView ? subView.model : this.model;
         var level = renderNavModel.get('Parent');
 
         if (level === 0) {
@@ -35,8 +34,9 @@
         var subCategories = renderNavModel.get("SubCategories");
         if (subCategories != null) {
             this.$el.append("<ul class='dropdown-menu'></ul>");
-            $.each(subCategories, $.proxy(function(i, item) {
-                this.render(new CategoryItem(item));
+            $.each(subCategories, $.proxy(function (i, item) {
+                var innerView = new CategoryView({ model: new CategoryItem(item) });
+                this.render(innerView);
             }, this));
         }
 
@@ -45,13 +45,19 @@
 
     _selectCategory: function (event) {
         this.model.set('isActive', true);
-        this._setCurrentCategory();
+        var modelId = this.model.get('Id');
+        if (event) {
+            var target = $(event.target);
+            if (target.data('id'))
+                modelId = target.data('id');
+        }
+        this._setCurrentCategory(modelId);
         return false;
     },
 
     _setCurrentCategory: function (id) {
-        var serviceId = id || this.model.get('Id');
-        appState.set('currentCategory', serviceId);
+        //var serviceId = id || this.model.get('Id');
+        appState.set('currentCategory', id);
     },
 
     clear: function() {
