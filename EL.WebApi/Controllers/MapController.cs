@@ -19,7 +19,7 @@ namespace EL.WebApi.Controllers
 	    {
 			var markers = _ctxMap.Map
 				.Where(x => x.CategoryId == id
-							|| x.Category.Parent == id)
+							|| x.Category.Parent == id) 
 				.ToList();
 
 			return markers;
