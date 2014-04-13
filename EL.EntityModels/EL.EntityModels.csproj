@@ -91,6 +91,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Category.cs" />
+    <Compile Include="Contacts.cs" />
+    <Compile Include="Details.cs" />
+    <Compile Include="Entrepreneur.cs" />
+    <Compile Include="Gallery.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="ModelHelpers\MenuBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

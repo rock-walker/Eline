@@ -171,6 +171,7 @@
       <DependentUpon>LineDB.mdf</DependentUpon>
     </Content>
     <Content Include="App_Data\LineDB.mdf" />
+    <Content Include="App_Data\lineDbSchemaAndData.sql" />
     <Content Include="Content\front\css\custom.css" />
     <Content Include="Content\front\css\pages\gallery.css" />
     <Content Include="Content\front\css\pages\page404.css" />
