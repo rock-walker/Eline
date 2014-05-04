@@ -337,12 +337,6 @@
     <Content Include="Content\front\img\syncfusion-icons-white.png" />
     <Content Include="Content\front\img\syncfusion-icons.png" />
     <Content Include="Content\front\img\up.png" />
-    <Content Include="Content\front\img\works\img1.jpg" />
-    <Content Include="Content\front\img\works\img2.jpg" />
-    <Content Include="Content\front\img\works\img3.jpg" />
-    <Content Include="Content\front\img\works\img4.jpg" />
-    <Content Include="Content\front\img\works\img5.jpg" />
-    <Content Include="Content\front\img\works\img6.jpg" />
     <Content Include="Content\front\plugins\animated-header\cbpAnimatedHeader.js" />
     <Content Include="Content\front\plugins\animated-header\classie.js" />
     <Content Include="Content\front\plugins\back-to-top.js" />
@@ -414,10 +408,18 @@
     <Content Include="Content\front\plugins\gmaps\lib\gmaps.styles.js" />
     <Content Include="Content\front\plugins\gmaps\lib\gmaps.utils.js" />
     <Content Include="Content\front\plugins\hover-dropdown.js" />
+    <Content Include="Gallery\558ec6ce-8abd-43e7-812d-72c3f3cb4933\img5-small.jpg" />
+    <Content Include="Gallery\63f3d788-daad-4b5b-b188-b4d35db8afbb\img4-small.jpg" />
+    <Content Include="Gallery\b99d0887-32cb-410e-abb6-fb215daf9562\img1-small.jpg" />
+    <Content Include="Gallery\f1410d69-9f11-45c0-8499-6285de7f4da8\img3-small.jpg" />
     <Content Include="Scripts\base\date.js" />
     <Content Include="Scripts\base\el.js" />
+    <Content Include="Scripts\base\Router.js" />
     <Content Include="Scripts\collections\Category.js" />
     <Content Include="Scripts\collections\GeoMarker.js" />
+    <Content Include="Scripts\collections\Movable.js" />
+    <Content Include="Scripts\compositeViews\Movables.js" />
+    <Content Include="Scripts\models\Movable.js" />
     <Content Include="Scripts\compositeViews\Map.js" />
     <Content Include="Scripts\models\ElineState.js" />
     <Content Include="Scripts\models\geoMarker.js" />
@@ -574,6 +576,7 @@
     <Content Include="Scripts\views\Marker.js" />
     <Content Include="Scripts\views\homeTemplates.htm" />
     <Content Include="Scripts\views\mapOld.js" />
+    <Content Include="Scripts\views\Movable.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -603,6 +606,9 @@
     <Folder Include="Areas\ServiceRoom\Controllers\" />
     <Folder Include="Areas\ServiceRoom\Models\" />
     <Folder Include="Areas\ServiceRoom\Views\Shared\" />
+    <Folder Include="Gallery\905107eb-51a9-4640-8eb7-4e6106396bea\" />
+    <Folder Include="Gallery\b99d0887-32cb-410e-abb6-fb215daf9562\Certificate\" />
+    <Folder Include="Gallery\b99d0887-32cb-410e-abb6-fb215daf9562\Full\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

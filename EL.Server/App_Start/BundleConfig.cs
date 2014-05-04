@@ -42,6 +42,7 @@ namespace EL.Server
 				.Include("~/Scripts/base/el.js")
 				.Include("~/Scripts/base/date.js")
 				.Include("~/Scripts/base/elapp.js")
+				.Include("~/Scripts/base/Router.js")
 				//END:
 
 				.IncludeDirectory("~/Scripts/views", "*.js", true)

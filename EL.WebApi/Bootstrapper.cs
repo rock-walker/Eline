@@ -47,8 +47,12 @@ namespace EL.WebApi
 				routeTemplate: "api/category/{action}/{id}",
 				defaults: new { controller = "category", id = RouteParameter.Optional, action="get" }
 			);
-			
-			
+
+			routes.MapHttpRoute(
+				"Movables",
+				"api/movable/{action}/{id}",
+				new { module="api", controller = "movable", id = RouteParameter.Optional, action="get"}
+			);
 		}
 		
 		private void Initialize()

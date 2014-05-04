@@ -14,3 +14,8 @@
     border: 3px solid aqua;
     margin-left: 50%;
 }
+#movables {
+    margin-top: 10px;
+    overflow-y: scroll;
+    height: 400px;
+}

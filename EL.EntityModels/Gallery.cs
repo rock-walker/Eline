@@ -1,6 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.IO;
 
 namespace EL.EntityModels
 {
@@ -16,8 +18,7 @@ namespace EL.EntityModels
 		[Key]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public virtual int Id { get; set; }
-		public virtual string Results { get; set; }
-		public virtual string Thumb { get; set; }
-		public virtual string Certificates { get; set; }
+		public virtual string Avatar { get; set; }
+		public virtual Guid FolderId { get; set; }
 	}
 }

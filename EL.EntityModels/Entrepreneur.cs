@@ -20,7 +20,6 @@ namespace EL.EntityModels
 		public virtual string Name { get; set; }
 		public virtual IEnumerable<Category> Categories { get; set; }
 		public virtual Marker Location { get; set; }
-		public virtual Contacts Contacts { get; set; }
 		public virtual Details Details { get; set; }
 	}
 }

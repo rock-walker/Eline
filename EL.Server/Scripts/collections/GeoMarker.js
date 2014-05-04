@@ -5,7 +5,7 @@
     },
 
     initialize: function (params) {
-        console.log('[MapCollection]: initialize');
+        console.log('[Map: Collection]: initialize, state: ' + appState.get('currentCategory'));
     }
 });
 

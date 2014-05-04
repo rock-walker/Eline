@@ -7,6 +7,7 @@ var App = function () {
     var isIE10 = false;
     var appHeader;
     var serviceMap;
+    var movableServices;
 
     var handleInit = function() {
 
@@ -231,6 +232,7 @@ var App = function () {
     var handleBuildUi = function () {
         appHeader = new AppHeader;
         serviceMap = new Map;
+        movableServices = new Movables;
     }
 	
     return {
@@ -255,6 +257,10 @@ var App = function () {
 
         getServiceMap: function() {
             return serviceMap;
+        },
+
+        getMovableServices: function() {
+            return movableServices;
         },
 
         initUniform: function (els) {

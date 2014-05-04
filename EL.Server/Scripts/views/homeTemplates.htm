@@ -23,3 +23,19 @@
         </div> 
     </li>
 </script>
+
+<script type="text/template" id="movable-item">
+	<div class="col-md-3 col-sm-4">
+		<img src="Gallery/<%-Gallery.FolderId%>/<%-Gallery.Avatar%>" alt="" class="img-responsive">
+	</div>
+	<div class="col-md-8 col-sm-8">
+		<h2><a href="blog_item.html"><%-Last%>&nbsp;<%-First%>&nbsp;<%-Middle%></a></h2>
+		<ul class="blog-info">
+			<li><i class="fa fa-calendar"></i> 25/07/2013</li>
+			<li><i class="fa fa-comments"></i> 17</li>
+			<li><i class="fa fa-tags"></i> Hairdress</li>
+		</ul>
+		<p><%-Details.Experience%></p>
+		<a class="more" href="blog_item.html">Read more <i class="icon-angle-right"></i></a>
+	</div>
+</script>

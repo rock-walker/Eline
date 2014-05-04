@@ -6,20 +6,38 @@
     },
 
     initialize: function() {
-        this.on('change:currentCategory', this._getServiceMarkers);
+        this.on('change:currentCategory', this._reactOnCategory);
     },
 
-    _getServiceMarkers: function () {
+    _reactOnCategory: function() {
+        this._getServiceMarkers();
+        this._getMovables();
+    },
+
+    _getServiceMarkers: function() {
         var serviceMap = App.getServiceMap();
 
         if (serviceMap && serviceMap.getGmap().markers.length > 0)
             serviceMap.getGmap().removeMarkers();
-            //App.getServiceMap().getGmap().clearMarkers();//$el.gmap('clearMarkers');
 
         serviceMarkers.fetch(
             {
                 success: this._apiMarkersSuccess,
                 onerror: this._apiMarkersError
+            }
+        );
+    },
+
+    _getMovables: function() {
+        var movableServices = App.getMovableServices();
+        if (!movableServices)
+            return;
+
+        movableServices.resetAll();
+        movables.fetch(
+            {
+                success: this._getMovablesSuccess,
+                onerror: this._getMovablesError
             }
         );
     },
@@ -30,6 +48,14 @@
     _apiMarkersError: function(xhr) {
         console.log('[GMap]: GET Api markers status: FAILED');
     },
+
+    _getMovablesSuccess: function(xhr) {
+        console.log('[Movable]: GET movables by category id: SUCCESS]');
+    },
+
+    _getMovablesError: function(xhr) {
+        console.log('[Movable]: GET movables by category id: FAILED');
+    }
 });
 
 var appState = new ElineState;

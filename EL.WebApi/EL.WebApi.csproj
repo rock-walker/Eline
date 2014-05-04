@@ -174,6 +174,7 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\MapController.cs" />
+    <Compile Include="Controllers\MovableController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
