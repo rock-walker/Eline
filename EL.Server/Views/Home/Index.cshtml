@@ -1,5 +1,7 @@
-﻿@{
-    Layout = "~/Views/Shared/_LayoutEL.cshtml";
+﻿@using System.Web.Optimization
+@using EL.Logic.ViewHelpers;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="realService">
@@ -26,3 +28,41 @@
 <div class="container">
 </div>
 <!-- END CONTAINER -->
+@section Header
+{
+    @Html.Partial("~/Views/Base/Header.cshtml")
+}
+@section JsLoader
+{
+    @Html.Partial("~/Views/Base/JsLoader.cshtml")
+}
+@section TopMenu
+{
+    @Html.Partial("~/Views/Front/TopMenu.cshtml")
+}
+@section Home{
+    <script src="http://maps.google.com/maps/api/js?sensor=true&language=ru" type="text/javascript"></script>
+    @Scripts.Render("~/jsBundle/Backbone","~/jsBundle/front")
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            if (window.el == undefined)
+                console.log('el is not defined in LayoutEL');
+            else
+                el.register('dateFormatter', el.Date, 'singleton', {
+                    'days': '@Html.JsString((string) ViewBag.DayNames)',
+                    'months': '@Html.JsString((string) ViewBag.MonthNames)',
+                    'daysMin': '@Html.JsString((string) ViewBag.AbbrDayNames)',
+                    'monthsMin': '@Html.JsString((string) ViewBag.AbbrMonthNames)',
+                    'template': '@Html.JsString((string) ViewBag.DateTimeTemplate)'
+                });
+            App.buildUi();
+            /*
+            App.init();
+            App.initBxSlider();
+            */
+            Index.initRevolutionSlider();
+        });
+    </script>
+
+    <!-- END PAGE LEVEL JAVASCRIPTS -->
+}

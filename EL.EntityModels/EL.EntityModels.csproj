@@ -90,6 +90,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountModels.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Details.cs" />
     <Compile Include="Entrepreneur.cs" />

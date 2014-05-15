@@ -11,7 +11,7 @@
     if (!File.Exists(physPath))
     {
         var files = Directory.EnumerateFiles(server.MapPath("~/Scripts/Resources/"), string.Format("Resources.{0}-*.js", locale != null ? locale.Substring(0, 2) : string.Empty));
-        if (files.Count() > 0)
+        if (files.Any())
         {
             physPath = files.OrderBy(x => x).First();
             var m = new Regex("Resources\\.([A-Za-z\\-]+)\\.js", RegexOptions.Compiled).Match(physPath);

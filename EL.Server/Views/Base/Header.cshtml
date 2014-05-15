@@ -1,0 +1,11 @@
+﻿@using EL.Server.Views.App_LocalResources;
+@using System.Web.Optimization
+
+<head>
+    @Styles.Render("~/cssBundle/frontHome")
+    <link rel="stylesheet" href="~/Content/front/plugins/revolution_slider/css/rs-style.css" media="screen">
+    <link rel="stylesheet" href="~/Content/front/plugins/revolution_slider/rs-plugin/css/settings.css" media="screen"> 
+    <title>@ElResources.ResourceManager.GetString(ViewData["Title"].ToString(), ElResources.Culture)</title>
+    @Header.Insert(Url)
+    @L10n.Insert(Server, (ViewData["locale"] ?? string.Empty).ToString(), (ViewData["resourceTemplate"] ?? string.Empty).ToString(), Url)
+</head>

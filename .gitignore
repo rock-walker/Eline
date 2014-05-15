@@ -5,3 +5,4 @@ EL.Server/Web.config
 *.ldf
 *.mdf
 EL.Server/App_Data/LineDB.mdf
+packages

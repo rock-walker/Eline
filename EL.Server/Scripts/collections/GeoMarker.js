@@ -1,7 +1,7 @@
 ﻿var MarkerCollection = Backbone.Collection.extend({
     model: geoMarker,
     url: function() {
-        return 'api/map/' + appState.get('currentCategory');
+        return '/api/map/' + appState.get('currentCategory');
     },
 
     initialize: function (params) {

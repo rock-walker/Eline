@@ -1,0 +1,26 @@
+﻿@using System.Web.Configuration;
+@using System.Web.Optimization
+@using EL.Logic.ViewHelpers;
+
+<!-- Load javascripts at bottom, this will reduce page load time -->
+    <!-- BEGIN CORE PLUGINS(REQUIRED FOR ALL PAGES) -->
+    <!--[if lt IE 9]>
+        <script src="Content/front/plugins/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        elapp.defaults = {
+            appBuild: '@Html.JsStringHtml(WebConfigurationManager.AppSettings["Build"] ?? "")',
+            customerSupportEmail: '@Html.JsStringHtml(WebConfigurationManager.AppSettings["SupportEmail"] ?? "")',
+            customerCareUrl: '@Html.JsStringHtml(ViewData["CustomerCareUrl"].ToString())',
+            searchTimeout: '@Html.JsStringHtml((ViewData["pages.FactFinder.SearchTimeout"] ?? "0").ToString())',
+            translations: @Html.Raw(JsonPacket.Compose(ViewData["Translation"]))
+        };
+        elapp.urls = {
+            logout: '@Html.JsString(Url.Action("logoff", "Account", new {module = ViewData["module"]}))',
+            error: '@Html.JsString(Url.Action("Error", "Account", new {module = ViewData["module"]}) + String.Format("?returnurl={0}", HttpUtility.UrlEncode(Url.Action("Index", "App", new {module = ViewData["module"]}))))',
+            baseUrl: '@Html.JsString(Url.Content("~/"))'
+        };
+
+    </script>
+    @Scripts.Render("~/jsBundle/base");
+

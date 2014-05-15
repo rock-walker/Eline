@@ -35,16 +35,19 @@ namespace EL.Server
 				.Include("~/Scripts/thirdParty/jquery-1.11.0.js")
 				.Include("~/Scripts/thirdParty/jquery-migrate-1.2.1.js")
 				//.Include("~/Scripts/thirdParty/jquery.mixitup.min.js")
-				.Include("~/Scripts/thirdParty/underscore.js")
-				.Include("~/Scripts/thirdParty/backbone.js")
+				//.Include("~/Scripts/thirdParty/underscore.js")
+				//.Include("~/Scripts/thirdParty/backbone.js")
 
 				//START: base manual scripts -> add here manually
 				.Include("~/Scripts/base/el.js")
 				.Include("~/Scripts/base/date.js")
 				.Include("~/Scripts/base/elapp.js")
-				.Include("~/Scripts/base/Router.js")
+				.ForceOrdered());
 				//END:
-
+			bundles.Add(new ScriptBundle("~/jsBundle/Backbone")
+				.Include("~/Scripts/thirdParty/underscore.js")
+				.Include("~/Scripts/thirdParty/backbone.js")
+				.Include("~/Scripts/base/Router.js")
 				.IncludeDirectory("~/Scripts/views", "*.js", true)
 				.IncludeDirectory("~/Scripts/resources", "*.js", true)
 				.IncludeDirectory("~/Scripts/compositeViews", "*.js", true)
