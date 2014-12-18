@@ -1,17 +1,17 @@
 using System;
 using System.Configuration;
-using System.Linq;
 using System.Runtime.Caching;
 using System.Threading;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using EL.Logic.Core.Principal;
-using Microsoft.Practices.Unity;
-using System.Web.Http;
-using System.Web;
 using EL.Logic.ApplicationLevel;
+using EL.Logic.Controller;
+using EL.Logic.Core.Principal;
+using EL.Logic.CuttingEdge;
+using Microsoft.Practices.EnterpriseLibrary.Common.Utility;
+using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
-using WebGrease.Css.Extensions;
 
 namespace EL.Server
 {
@@ -24,7 +24,6 @@ namespace EL.Server
         private static readonly Lazy<IUnityContainer> Container = new Lazy<IUnityContainer>(() =>
         {
             var container = new UnityContainer();
-			container.RegisterInstance(GlobalConfiguration.Configuration, new ExternallyControlledLifetimeManager());
             RegisterTypes(container);
             return container;
         });
@@ -39,19 +38,20 @@ namespace EL.Server
         #endregion
 
         /// <summary>Registers the type mappings with the Unity container.</summary>
-        /// <param name="container">The unity container to configure.</param>
         /// <remarks>There is no need to register concrete types such as controllers or API controllers (unless you want to 
+        /// <param name="container">The unity container to configure.</param>
         /// change the defaults), as Unity allows resolving a concrete type even if it was not previously registered.</remarks>
         public static void RegisterTypes(IUnityContainer container)
         {
+			//RegisterWebApiResolver(container);
 			PreConfig(container);
 			ConfigureFromFile(container);
+	        CrossConcern(container);
+	        WebApiConfig(container);
 
-	        container.ResolveAll<IBootstrapper>().ForEach(x => x.Run());
+			container.ResolveAll<IBootstrapper>().ForEach(x => x.Run());
 
-	        PosConfig(container);
-	        // TODO: Register your types here
-	        // container.RegisterType<IProductRepository, ProductRepository>();
+			PosConfig(container);
         }
 
 		private static void PreConfig(IUnityContainer ioc)
@@ -64,7 +64,6 @@ namespace EL.Server
 
 			ioc.RegisterInstance(GlobalFilters.Filters);
 			ioc.RegisterInstance(RouteTable.Routes);
-			ioc.RegisterInstance(GlobalConfiguration.Configuration, new ExternallyControlledLifetimeManager());
 		}
 
 		private static void ConfigureFromFile(IUnityContainer ioc)
@@ -84,14 +83,24 @@ namespace EL.Server
 				ioc.LoadConfiguration(section);
 		}
 
-	    private static void PosConfig(IUnityContainer ioc)
+	    private static void CrossConcern(IUnityContainer ioc)
 	    {
-		    ioc.RegisterType<ISessionPrincipal>
-			    (
-				    new InjectionFactory(
-					    c => Thread.CurrentPrincipal as ISessionPrincipal
-					    )
-			    );
+		    ioc.RegisterType<ILogger, Logger>(new HierarchicalLifetimeManager());
 	    }
+
+	    private static void WebApiConfig(IUnityContainer ioc)
+	    {
+		    ioc.RegisterType<IMovable, Movable>(new HierarchicalLifetimeManager());
+	    }
+
+		private static void PosConfig(IUnityContainer ioc)
+		{
+			ioc.RegisterType<ISessionPrincipal>
+				(
+					new InjectionFactory(
+						c => Thread.CurrentPrincipal as ISessionPrincipal
+						)
+				);
+		}
     }
 }

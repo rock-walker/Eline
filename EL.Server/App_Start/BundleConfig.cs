@@ -8,6 +8,8 @@ namespace EL.Server
 		public static void RegisterBundles(BundleCollection bundles)
 		{
 			RegisterStyleBundles(bundles);
+
+			RegisterAdminStyleBundles(bundles);
 			RegisterJavascriptBundles(bundles);
 		}
 
@@ -67,6 +69,11 @@ namespace EL.Server
 				.IncludeDirectory("~/Content/front/plugins/gmaps", "*.js", true)
 				.Include("~/Content/front/plugins/back-to-top.js")
 				.Include("~/Content/front/plugins/hover-dropdown.js"));
+		}
+
+		private static void RegisterAdminStyleBundles(BundleCollection bundles)
+		{
+			//bundles.Add(new StyleBundle("/cssBundle/adminHome"));
 		}
 	}
 }

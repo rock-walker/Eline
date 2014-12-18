@@ -1,4 +1,4 @@
-if (window.google == undefined && window.google.maps == undefined) {
+if (!(typeof window.google === 'object' && window.google.maps)) {
   throw 'Google Maps API is required. Please register the following JavaScript library http://maps.google.com/maps/api/js?sensor=true.'
 }
 
@@ -49,7 +49,7 @@ var array_map = function(array, callback) {
   else {
     for (i = 0; i < array_length; i++) {
       callback_params = original_callback_params;
-      callback_params = callback_params.splice(0, 0, array[i]);
+      callback_params.splice(0, 0, array[i]);
       array_return.push(callback.apply(this, callback_params));
     }
   }
@@ -84,11 +84,13 @@ var arrayToLatLng = function(coords, useGeoJSON) {
   var i;
 
   for (i = 0; i < coords.length; i++) {
-    if (coords[i].length > 0 && typeof(coords[i][0]) != "number") {
-      coords[i] = arrayToLatLng(coords[i], useGeoJSON);
-    }
-    else {
-      coords[i] = coordsToLatLngs(coords[i], useGeoJSON);
+    if (!(coords[i] instanceof google.maps.LatLng)) {
+      if (coords[i].length > 0 && typeof(coords[i][0]) == "object") {
+        coords[i] = arrayToLatLng(coords[i], useGeoJSON);
+      }
+      else {
+        coords[i] = coordsToLatLngs(coords[i], useGeoJSON);
+      }
     }
   }
 
@@ -128,6 +130,8 @@ var GMaps = (function(global) {
   var doc = document;
 
   var GMaps = function(options) {
+    if (!this) return new GMaps(options);
+
     options.zoom = options.zoom || 15;
     options.mapType = options.mapType || 'roadmap';
 
@@ -245,7 +249,7 @@ var GMaps = (function(global) {
       context_menu_element.innerHTML = html;
 
       var context_menu_items = context_menu_element.getElementsByTagName('a'),
-          context_menu_items_count = context_menu_items.length
+          context_menu_items_count = context_menu_items.length,
           i;
 
       for (i = 0; i < context_menu_items_count; i++) {
@@ -272,7 +276,7 @@ var GMaps = (function(global) {
       context_menu_element.style.display = 'block';
     };
 
-    var buildContextMenu = function(control, e) {
+    this.buildContextMenu = function(control, e) {
       if (control === 'marker') {
         e.pixel = {};
 
@@ -352,6 +356,9 @@ var GMaps = (function(global) {
       });
     };
 
+    //google.maps.event.addListener(this.map, 'idle', this.hideContextMenu);
+    google.maps.event.addListener(this.map, 'zoom_changed', this.hideContextMenu);
+
     for (var ev = 0; ev < events_that_hide_context_menu.length; ev++) {
       var name = events_that_hide_context_menu[ev];
 
@@ -374,7 +381,7 @@ var GMaps = (function(global) {
       }
 
       if(window.context_menu[self.el.id]['map'] != undefined) {
-        buildContextMenu('map', e);
+        self.buildContextMenu('map', e);
       }
     });
 
@@ -388,7 +395,9 @@ var GMaps = (function(global) {
           i;
 
       for (i = 0; i < markers_length; i++) {
-        latLngs.push(this.markers[i].getPosition());
+        if(typeof(this.markers[i].visible) === 'boolean' && this.markers[i].visible) {
+          latLngs.push(this.markers[i].getPosition());
+        }
       }
 
       this.fitLatLngBounds(latLngs);

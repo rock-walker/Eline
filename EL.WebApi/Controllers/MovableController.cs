@@ -1,14 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http;
 using EL.EntityModels;
+using EL.Logic.Controller;
 
 namespace EL.WebApi.Controllers
 {
     public class MovableController : ApiController
     {
-		readonly MovablesContext _ctxMovables = new MovablesContext();
-		readonly CategoryContext _ctxCategory = new CategoryContext();
+	    private readonly IMovable _movable;
+
+	    public MovableController(IMovable movable)
+	    {
+		    _movable = movable;
+	    }
+
         // GET api/movable
         public ICollection<Movables> Get()
         {
@@ -20,29 +27,9 @@ namespace EL.WebApi.Controllers
 
 		// Get api/movable/bycategory/2
 		[ActionName("bycategory")]
-	    public ICollection<Movables> GetByCategory(int id)
+	    public Task<IEnumerable<Movables>> GetByCategory(int id)
 		{
-			var parentCatIds = (from c in _ctxCategory.Categories
-				where c.Parent == id
-				select c.Id).ToList();
-
-			var movableIds = (parentCatIds.Count > 0) 
-					? (from p in parentCatIds
-						from cm in _ctxMovables.CategoriesToMovables
-						where cm.CategoryId == p
-						select cm.MovableId).ToList()
-					: (from cm in _ctxMovables.CategoriesToMovables
-					    where cm.CategoryId == id
-					    select cm.MovableId).ToList();
-
-			var res = from mId in movableIds
-					  from mObj in _ctxMovables.Movables
-								.Include("Gallery")
-								.Include("Details")
-				where mObj.Id == mId
-				select mObj;
-
-			return res.ToList();
+			return _movable.GetByCategory(id);
 		}
 
         // GET api/movable/get/5

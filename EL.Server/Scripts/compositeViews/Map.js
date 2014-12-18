@@ -18,7 +18,7 @@
         });
 
         this.personGeoLocation();
-
+        console.log('[GMap]:finish rendering');
         return this;
     },
 
@@ -60,29 +60,50 @@
         // Try HTML5 geolocation
         if (navigator.geolocation) {
 
-            navigator.geolocation.getCurrentPosition($.proxy(function (position) {
-                    console.log('[GMap]: define position of person');
-                var pos = new google.maps.LatLng(position.coords.latitude,
-                                                 position.coords.longitude);
+            var options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 60000
+            };
 
-                    this.gmap.addMarker({
-                        lat: pos.k,
-                        lng: pos.A,
-                        title: 'You!'
-                    });
-                /*
-                var infowindow = new google.maps.InfoWindow({
-                    map: this.gmap,
-                    position: pos,
-                    content: 'Location found using HTML5.'
-                });
-                */
-                this.gmap.setCenter(pos.k, pos.A);
-            }, this),
-
-            $.proxy(function () {
+            var locationTimeout = setTimeout($.proxy(function () {
                 this.handleNoGeolocation(true);
-            }, this));
+            }, this), 10000);
+
+            navigator.geolocation.getCurrentPosition(
+                //success
+                $.proxy(function (position) {
+                    console.log('[GMap]: <start>: define position of person');
+                    if (position && position.coords) {
+                        clearTimeout(locationTimeout);
+                        var pos = new google.maps.LatLng(position.coords.latitude,
+                            position.coords.longitude);
+
+                        this.gmap.addMarker({
+                            lat: pos.k,
+                            lng: pos.D,
+                            title: 'You!'
+                        });
+                        /*
+                    var infowindow = new google.maps.InfoWindow({
+                        map: this.gmap,
+                        position: pos,
+                        content: 'Location found using HTML5.'
+                    });
+                    */
+                        this.gmap.setCenter(pos.k, pos.D);
+                    } else {
+                        console.log('[GMap]: user geo-position wasn\'t defined');
+                    }
+                    console.log('[GMap]: <end>: person position has defined');
+                }, this),
+                //error
+                $.proxy(function () {
+                    this.handleNoGeolocation(true);
+                }, this),
+                //options
+                options);
+            console.log('[GMap]: success browser geolocation');
         } else {
             // Browser doesn't support Geolocation
             this.handleNoGeolocation(false);
@@ -103,7 +124,7 @@
             content: content
         };
 
-        var infowindow = new google.maps.InfoWindow(options);
-        this.gmap.setCenter(options.position);
+        //var infowindow = new google.maps.InfoWindow(options);
+        this.gmap.setCenter(options.position.k, options.position.D);
     }
 })

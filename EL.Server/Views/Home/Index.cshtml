@@ -4,6 +4,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section Header
+{
+    @Html.Partial("~/Views/Base/Header.cshtml")
+}
+@section JsLoader
+{
+    @Html.Partial("~/Views/Base/JsLoader.cshtml")
+}
+@section TopMenu
+{
+    @Html.Partial("~/Views/Front/TopMenu.cshtml")
+}
 <div class="realService">
     <div class="realHeader">
         <h2>Real service</h2>
@@ -28,20 +40,9 @@
 <div class="container">
 </div>
 <!-- END CONTAINER -->
-@section Header
-{
-    @Html.Partial("~/Views/Base/Header.cshtml")
-}
-@section JsLoader
-{
-    @Html.Partial("~/Views/Base/JsLoader.cshtml")
-}
-@section TopMenu
-{
-    @Html.Partial("~/Views/Front/TopMenu.cshtml")
-}
+
 @section Home{
-    <script src="http://maps.google.com/maps/api/js?sensor=true&language=ru" type="text/javascript"></script>
+
     @Scripts.Render("~/jsBundle/Backbone","~/jsBundle/front")
     <script type="text/javascript">
         jQuery(document).ready(function() {

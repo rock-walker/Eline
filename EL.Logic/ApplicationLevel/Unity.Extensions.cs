@@ -1,10 +1,7 @@
 ﻿using Microsoft.Practices.Unity;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.WebPages;
 
@@ -29,9 +26,7 @@ namespace EL.Logic.ApplicationLevel
 			foreach (var t in controllers)
 			{
 				// register IController for controller's factory
-				ioc.RegisterType(typeof(TController), t, module + "." + getControllerName(t), new HierarchicalLifetimeManager())
-					// register actual type to be its accessible without 'name'
-				.RegisterType(t, t, null, new HierarchicalLifetimeManager());
+				ioc.RegisterType(typeof (TController), t, module + "." + getControllerName(t), new HierarchicalLifetimeManager());
 
 				// register subcontrollers if present
 				t.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic)

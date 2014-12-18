@@ -7,6 +7,7 @@ using EL.Logic.ApplicationLevel;
 using EL.Logic.Core;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.Unity;
+using System.Runtime;
 
 namespace EL.Server.Base
 {
@@ -23,6 +24,7 @@ namespace EL.Server.Base
 		*/
 		[Dependency]
 		public ILocaleReader Locale { get; set; }
+		
 		/*
 		[Dependency("appType")]
 		public string AppType { get; set; }
@@ -38,10 +40,12 @@ namespace EL.Server.Base
 		protected override void Initialize(RequestContext requestContext)
 		{
 			base.Initialize(requestContext);
+			
 			if (Locale != null)
 			{
 				ViewData["locale"] = Locale.GetLocale();
 			}
+			
 			SetModuleSettings();
 		}
 

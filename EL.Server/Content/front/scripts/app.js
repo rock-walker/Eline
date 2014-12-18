@@ -51,7 +51,7 @@ var App = function () {
                 });
             });
         }
-    }
+    };
 
     $(window).scroll(function() {
         if ($(window).scrollTop()>300){
@@ -69,7 +69,7 @@ var App = function () {
         });
         jQuery('.tooltips').tooltip();
         jQuery('.popovers').popover();
-    }
+    };
 
     function handleMisc() {
         jQuery('.top').click(function () {
@@ -77,7 +77,7 @@ var App = function () {
                 scrollTop: jQuery('body').offset().top
             }, 'slow');
         }); //move to top navigator
-    }
+    };
 
 
     function handleSearch() {    
@@ -90,7 +90,7 @@ var App = function () {
                 $('.search-btn').addClass('show-search-icon');
             } 
         }); 
-    }
+    };
 
     function handleUniform() {
         if (!jQuery().uniform) {
@@ -105,9 +105,9 @@ var App = function () {
                     }
                 });
         }
-    }
+    };
 
-    var handleFancybox = function () {
+    var handleFancybox = function() {
         if (!jQuery.fancybox) {
             return;
         }
@@ -129,41 +129,41 @@ var App = function () {
                 type: 'iframe'
             });
         }
-    }
-	
+    };
+
     var handleFixedHeader = function() {
 
-            if (!window.addEventListener) {
-        window.attachEvent( 'scroll', function( event ) {
-                    if ($('body').hasClass("page-header-fixed") === false) {
-                        return;
-                    }
-        if( !didScroll ) {
-        didScroll = true;
-        setTimeout( scrollPage, 250 );
+        if (!window.addEventListener) {
+            window.attachEvent('scroll', function(event) {
+                if ($('body').hasClass("page-header-fixed") === false) {
+                    return;
+                }
+                if (!didScroll) {
+                    didScroll = true;
+                    setTimeout(scrollPage, 250);
+                }
+            });
+        } else {
+            window.addEventListener('scroll', function(event) {
+                if ($('body').hasClass("page-header-fixed") === false) {
+                    return;
+                }
+                if (!didScroll) {
+                    didScroll = true;
+                    setTimeout(scrollPage, 250);
+                }
+            }, false);
         }
-        });
-            } else {
-                window.addEventListener( 'scroll', function( event ) {
-                    if ($('body').hasClass("page-header-fixed") === false) {
-                        return;
-                    }
-                    if( !didScroll ) {
-                        didScroll = true;
-                        setTimeout( scrollPage, 250 );
-                    }
-                }, false );
-            }
         var docElem = document.documentElement,
-        header = $( '.navbar-inner' ),
-        headerwrap = $( '.front-header' ),
-        slider = $( '.slider-main' ),
-        didScroll = false,
-        changeHeaderOn = 300;
+            header = $('.navbar-inner'),
+            headerwrap = $('.front-header'),
+            slider = $('.slider-main'),
+            didScroll = false,
+            changeHeaderOn = 300;
 
         function scrollPage() {
-        var sy = scrollY();
-        if ( sy >= changeHeaderOn ) {
+            var sy = scrollY();
+            if (sy >= changeHeaderOn) {
                 headerwrap.addClass('front-header-shrink');
                 header.addClass('navbar-inner-shrink');
                 $('#logoimg').attr('width', '120px');
@@ -181,59 +181,68 @@ var App = function () {
             return window.pageYOffset || docElem.scrollTop;
         }
 
-    }
+    };
 
-    var handleTheme = function () {
-	
+    var handleTheme = function() {
+
         var panel = $('.color-panel');
-	
+
         // handle theme colors
-        var setColor = function (color) {
+        var setColor = function(color) {
             $('#style_color').attr("href", "assets/css/themes/" + color + (isRTL ? '-rtl' : '') + ".css");
             $('#logoimg').attr("src", "assets/img/logo_" + color + ".png");
             $('#rev-hint1').attr("src", "assets/img/sliders/revolution/hint1-" + color + ".png");
             $('#rev-hint2').attr("src", "assets/img/sliders/revolution/hint2-" + color + ".png");
         }
 
-        $('.icon-color', panel).click(function () {
+        $('.icon-color', panel).click(function() {
             $('.color-mode').show();
             $('.icon-color-close').show();
         });
 
-        $('.icon-color-close', panel).click(function () {
+        $('.icon-color-close', panel).click(function() {
             $('.color-mode').hide();
             $('.icon-color-close').hide();
         });
 
-        $('li', panel).click(function () {
+        $('li', panel).click(function() {
             var color = $(this).attr("data-style");
             setColor(color);
             $('.inline li', panel).removeClass("current");
             $(this).addClass("current");
         });
-		
-		$('.header-option', panel).change(function(){
-			if($('.header-option').val() == 'fixed'){
-	            $("body").addClass("page-header-fixed");
-                $('.header').addClass("navbar-fixed-top").removeClass("navbar-static-top");
-				App.scrollTop();
-				
-			} else if($('.header-option').val() == 'default'){
-	            $("body").removeClass("page-header-fixed");
-                $('.header').addClass("navbar-static-top").removeClass("navbar-fixed-top");
-				$('.navbar-inner').removeClass('navbar-inner-shrink');
-				$('.front-header').removeClass('front-header-shrink');
-				App.scrollTop();
-			}
-		});
-		
-    }
 
-    var handleBuildUi = function () {
+        $('.header-option', panel).change(function() {
+            if ($('.header-option').val() == 'fixed') {
+                $("body").addClass("page-header-fixed");
+                $('.header').addClass("navbar-fixed-top").removeClass("navbar-static-top");
+                App.scrollTop();
+
+            } else if ($('.header-option').val() == 'default') {
+                $("body").removeClass("page-header-fixed");
+                $('.header').addClass("navbar-static-top").removeClass("navbar-fixed-top");
+                $('.navbar-inner').removeClass('navbar-inner-shrink');
+                $('.front-header').removeClass('front-header-shrink');
+                App.scrollTop();
+            }
+        });
+
+    };
+    
+    var initMap = function () {
+        //project name: eline-service
+        google.load("maps", "3.17.19", {
+            "other_params": "key=AIzaSyA6dYIJt-bBuipkAMcsO_dDYcxASrZwEIo&sensor=true", callback: function () {
+                alert('s');
+                serviceMap = new Map;
+        } });
+    };
+
+    var handleBuildUi = function() {
         appHeader = new AppHeader;
         serviceMap = new Map;
         movableServices = new Movables;
-    }
+    };
 	
     return {
         init: function () {
@@ -251,7 +260,8 @@ var App = function () {
             handleSearch();
         },
 
-        buildUi: function() {
+        buildUi: function () {
+            //initMap();
             handleBuildUi();
         },
 

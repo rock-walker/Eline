@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using EL.EntityModels;
 using System.Collections.Generic;
 using System.Web.Http;
@@ -11,12 +12,12 @@ namespace EL.WebApi.Controllers
 		readonly CategoryContext _ctxCategory = new CategoryContext();
 
 		[ActionName("hierarchical")]
-		public ICollection<Category> GetHierarchical()
+		public IEnumerable<Category> GetHierarchical()
 		{
 			var categories = _ctxCategory.Categories.ToList();
 			var builtCategories = MenuBuilder.BuildCategoriesHierarchy(categories, 0);
 
-			return (ICollection<Category>) builtCategories;
+			return builtCategories;
 		}
 
 		// GET api/category

@@ -6,7 +6,7 @@ namespace EL.Server.Base
 {
 	internal class AsIsBundleOrderer : IBundleOrderer
 	{
-		public virtual IEnumerable<FileInfo> OrderFiles(BundleContext context, IEnumerable<FileInfo> files)
+		public IEnumerable<BundleFile> OrderFiles(BundleContext context, IEnumerable<BundleFile> files)
 		{
 			return files;
 		}

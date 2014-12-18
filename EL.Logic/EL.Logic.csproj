@@ -30,19 +30,38 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity">
-      <HintPath>..\packages\Unity.3.0.1304.1\lib\Net45\Microsoft.Practices.Unity.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Unity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration">
-      <HintPath>..\packages\Unity.3.0.1304.1\lib\Net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception">
+      <HintPath>..\packages\Unity.Interception.3.5.1404.0\lib\Net45\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration">
+      <HintPath>..\packages\Unity.Interception.3.5.1404.0\lib\Net45\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention">
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
@@ -67,18 +86,34 @@
   <ItemGroup>
     <Compile Include="ApplicationLevel\Bootstrapper.cs" />
     <Compile Include="ApplicationLevel\ModulesSettingsSection.cs" />
+    <Compile Include="ApplicationLevel\Unity.ControllerFactory.cs" />
     <Compile Include="ApplicationLevel\Unity.Extensions.cs" />
+    <Compile Include="ApplicationLevel\UnityHttpControllerFactory.cs" />
+    <Compile Include="ApplicationLevel\UnityResolver.cs" />
+    <Compile Include="Controller\IMovable.cs" />
+    <Compile Include="Controller\Movable.cs" />
     <Compile Include="Core\LocaleReader.cs" />
     <Compile Include="Core\Principal\ISessionPrinciple.cs" />
     <Compile Include="Core\Principal\SessionPrincipal.cs" />
     <Compile Include="Core\Session.cs" />
     <Compile Include="Core\UserData.cs" />
+    <Compile Include="CuttingEdge\ApiException.cs" />
+    <Compile Include="CuttingEdge\EntityNotFoundException.cs" />
+    <Compile Include="CuttingEdge\ExceptionExtensions.cs" />
+    <Compile Include="CuttingEdge\Logger.cs" />
+    <Compile Include="CuttingEdge\Logger.Extensions.cs" />
+    <Compile Include="CuttingEdge\Logger.Interface.cs" />
+    <Compile Include="CuttingEdge\LoggerObserver.cs" />
+    <Compile Include="Diagnostics\LogEntry.cs" />
     <Compile Include="ViewHelpers\Shorthands.cs" />
-    <Content Include="Core\ApiExceptionConvertor.cs" />
-    <Content Include="Core\ApiExceptionHandlerFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebApiCore\ApiExceptionConvertor.cs" />
+    <Compile Include="WebApiCore\ApiExceptionHandlerFilter.cs" />
+    <Compile Include="CuttingEdge\ExceptionSettings.cs" />
+    <Compile Include="WebApiCore\Resources\ApiErrors.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +121,18 @@
       <Project>{826d4f9a-5a8a-41d4-97cf-628bb6d225ac}</Project>
       <Name>EL.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EL.DataContracts.General\EL.DataContracts.General.csproj">
+      <Project>{76ef448f-7bbf-4956-8a96-7ce699b4f468}</Project>
+      <Name>EL.DataContracts.General</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EL.EntityModels\EL.EntityModels.csproj">
+      <Project>{dc1b4790-b09d-4054-9026-c7acd29a12a2}</Project>
+      <Name>EL.EntityModels</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="WebApiCore\Resources\ApiErrors.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
