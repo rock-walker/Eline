@@ -1,5 +1,6 @@
 using System.Web.Optimization;
 using EL.Server.Base;
+using Microsoft.Ajax.Utilities;
 
 namespace EL.Server
 {
@@ -10,7 +11,7 @@ namespace EL.Server
 			RegisterStyleBundles(bundles);
 
 			RegisterAdminStyleBundles(bundles);
-			RegisterJavascriptBundles(bundles);
+			RegisterJsFrontBundles(bundles);
 		}
 
 		private static void RegisterStyleBundles(BundleCollection bundles)
@@ -28,17 +29,26 @@ namespace EL.Server
 			bundles.Add(new StyleBundle("~/cssBundle/frontHome")
 							.Include("~/Content/front/plugins/fancybox/source/jquery.fancybox.css")
 							.Include("~/Content/front/plugins/bxslider/jquery.bxslider.css"));
+
+			bundles.Add(new StyleBundle("~/cssBundle/generalApp")
+							.IncludeDirectory("~/Content/base/css", "*.css")
+							.Include("~/Content/base/plugins/fullcalendar/fullcalendar.css"));
+			/*
+			bundles.Add(new StyleBundle("~/cssBundle/dialog")
+							.IncludeDirectory("~/Content/front/plugins/bootstrap-modal", "*.css"));
+			 * */
 		}
 
-		private static void RegisterJavascriptBundles(BundleCollection bundles)
+		private static void RegisterJsFrontBundles(BundleCollection bundles)
 		{
 			bundles.Add(new ScriptBundle("~/jsBundle/base")
 				.Include("~/Scripts/thirdParty/json2.js")
 				.Include("~/Scripts/thirdParty/jquery-1.11.0.js")
 				.Include("~/Scripts/thirdParty/jquery-migrate-1.2.1.js")
+				.IncludeDirectory("~/Content/front/plugins/bootstrap", "*.js", true)
+				.Include("~/Content/base/scripts/calendar.js")
+				//.IncludeDirectory("~/Scripts/thirdParty/BsDialog", "*.js", true)
 				//.Include("~/Scripts/thirdParty/jquery.mixitup.min.js")
-				//.Include("~/Scripts/thirdParty/underscore.js")
-				//.Include("~/Scripts/thirdParty/backbone.js")
 
 				//START: base manual scripts -> add here manually
 				.Include("~/Scripts/base/el.js")
@@ -60,13 +70,15 @@ namespace EL.Server
 			bundles.Add(new ScriptBundle("~/jsBundle/front")
 				.IncludeDirectory("~/Content/front/scripts", "*.js", true)
 				.IncludeDirectory("~/Content/front/plugins/animated-header", "*.js", true)
-				.IncludeDirectory("~/Content/front/plugins/bootstrap", "*.js", true)
 				.IncludeDirectory("~/Content/front/plugins/bxslider", "*.js", true)
 				.IncludeDirectory("~/Content/front/plugins/fancybox", "*.js", true)
 				.IncludeDirectory("~/Content/front/plugins/flexslider", "*.js", true)
 				.IncludeDirectory("~/Content/front/plugins/revolution_slider", "*.js", true)
 				.IncludeDirectory("~/Content/front/plugins/uniform", "*.js", true)
 				.IncludeDirectory("~/Content/front/plugins/gmaps", "*.js", true)
+				//jquery-ui need for fullcalendar plugin only
+				.Include("~/Content/base/plugins/jquery-ui/jquery-ui-1.10.3.custom.js")
+				.Include("~/Content/base/plugins/fullcalendar/fullcalendar.js")
 				.Include("~/Content/front/plugins/back-to-top.js")
 				.Include("~/Content/front/plugins/hover-dropdown.js"));
 		}

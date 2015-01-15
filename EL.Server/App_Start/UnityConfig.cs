@@ -90,7 +90,7 @@ namespace EL.Server
 
 	    private static void WebApiConfig(IUnityContainer ioc)
 	    {
-		    ioc.RegisterType<IMovable, Movable>(new HierarchicalLifetimeManager());
+		    ioc.RegisterType<IMovable, MovableItem>(new HierarchicalLifetimeManager());
 	    }
 
 		private static void PosConfig(IUnityContainer ioc)

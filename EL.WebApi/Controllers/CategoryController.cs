@@ -1,27 +1,32 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using EL.EntityModels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
+using EL.EntityModels;
+using EL.EntityModels.Contexts;
 using EL.EntityModels.ModelHelpers;
+using EL.EntityModels.Models;
 
 namespace EL.WebApi.Controllers
 {
 	public class CategoryController : ApiController
 	{
-		readonly CategoryContext _ctxCategory = new CategoryContext();
+		readonly GeneralContext _ctxCategory = new GeneralContext();
 
 		[ActionName("hierarchical")]
-		public IEnumerable<Category> GetHierarchical()
+		public IEnumerable<DomainModels.ChildrenCategory> GetHierarchical()
 		{
 			var categories = _ctxCategory.Categories.ToList();
-			var builtCategories = MenuBuilder.BuildCategoriesHierarchy(categories, 0);
+			if (!categories.Any())
+				//throw Exception here
+				;
+
+			var builtCategories = MenuBuilder.BuildCategoriesHierarchy(categories.OfType<DomainModels.ChildrenCategory>(), 0);
 
 			return builtCategories;
 		}
 
 		// GET api/category
-		public ICollection<Category> Get()
+		public ICollection<DomainModels.BaseCategory> Get()
 		{
 			return _ctxCategory.Categories.ToList();
 		}

@@ -106,7 +106,7 @@ namespace EL.Server.Base
 				{
 					section = source.GetSection("module.definitions") as ModulesSettingsSection;
 				}
-				catch (Exception e)
+				catch (Exception)
 				{
 					/*if (Log != null)
 						Log.Error(e);*/

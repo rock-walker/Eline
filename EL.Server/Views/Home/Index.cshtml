@@ -40,7 +40,6 @@
 <div class="container">
 </div>
 <!-- END CONTAINER -->
-
 @section Home{
 
     @Scripts.Render("~/jsBundle/Backbone","~/jsBundle/front")
@@ -57,11 +56,13 @@
                     'template': '@Html.JsString((string) ViewBag.DateTimeTemplate)'
                 });
             App.buildUi();
+            App.customInit();
             /*
             App.init();
             App.initBxSlider();
             */
             Index.initRevolutionSlider();
+            //should be moved before calling dialog
         });
     </script>
 

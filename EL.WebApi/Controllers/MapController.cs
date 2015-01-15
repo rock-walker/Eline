@@ -1,24 +1,25 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using EL.EntityModels;
+using EL.EntityModels.Contexts;
+using EL.EntityModels.Models;
 
 namespace EL.WebApi.Controllers
 {
     public class MapController : ApiController
     {
-		readonly MapContext _ctxMap = new MapContext();
+		readonly EntrepreneursContext _ctxMap = new EntrepreneursContext();
 
-	    public ICollection<Marker> Get()
+	    public ICollection<GeoMarker> Get()
 	    {
 		    return null;
 	    }
 
-	    public ICollection<Marker> Get(int id)
+	    public ICollection<GeoMarker> Get(int id)
 	    {
-			var markers = _ctxMap.Map
-				.Where(x => x.CategoryId == id
-							|| x.Category.Parent == id) 
+			var markers = _ctxMap.GeoMarkers
+				.Where(x => x.Category.Id == id
+							|| x.Category.Parent == id)
 				.ToList();
 
 			return markers;

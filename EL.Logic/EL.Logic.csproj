@@ -90,6 +90,8 @@
     <Compile Include="ApplicationLevel\Unity.Extensions.cs" />
     <Compile Include="ApplicationLevel\UnityHttpControllerFactory.cs" />
     <Compile Include="ApplicationLevel\UnityResolver.cs" />
+    <Compile Include="Controller\Calendar.cs" />
+    <Compile Include="Controller\ICalendar.cs" />
     <Compile Include="Controller\IMovable.cs" />
     <Compile Include="Controller\Movable.cs" />
     <Compile Include="Core\LocaleReader.cs" />

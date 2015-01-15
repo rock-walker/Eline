@@ -77,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\MovableController.cs" />
@@ -99,6 +100,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EL.DataContracts.General\EL.DataContracts.General.csproj">
+      <Project>{76ef448f-7bbf-4956-8a96-7ce699b4f468}</Project>
+      <Name>EL.DataContracts.General</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EL.EntityModels\EL.EntityModels.csproj">
       <Project>{DC1B4790-B09D-4054-9026-C7ACD29A12A2}</Project>
       <Name>EL.EntityModels</Name>

@@ -5,7 +5,7 @@ namespace EL.EntityModels.ModelHelpers
 {
 	public class MenuBuilder
 	{
-		public static IEnumerable<T> BuildCategoriesHierarchy<T>(IEnumerable<T> source, int level) where T : BaseCategory
+		public static IEnumerable<T> BuildCategoriesHierarchy<T>(IEnumerable<T> source, int level) where T : DomainModels.ChildrenCategory
 		{
 			var initializedSource = source as IList<T> ?? source.ToList();
 			return initializedSource.Where(s => s.Parent == level).ToList()

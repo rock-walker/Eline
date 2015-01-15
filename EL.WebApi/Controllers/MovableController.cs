@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
-using EL.EntityModels;
+using EL.EntityModels.Models;
 using EL.Logic.Controller;
 
 namespace EL.WebApi.Controllers
@@ -17,17 +16,17 @@ namespace EL.WebApi.Controllers
 	    }
 
         // GET api/movable
-        public ICollection<Movables> Get()
+        public ICollection<Movable> Get()
         {
-            return new List<Movables>
+            return new List<Movable>
             {
-	            new Movables{ Id = 12}
+	            new Movable{ Id = 12}
             };
         }
 
 		// Get api/movable/bycategory/2
 		[ActionName("bycategory")]
-	    public Task<IEnumerable<Movables>> GetByCategory(int id)
+	    public Task<IEnumerable<Movable>> GetByCategory(int id)
 		{
 			return _movable.GetByCategory(id);
 		}

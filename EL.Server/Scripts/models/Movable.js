@@ -8,7 +8,7 @@
                 Experience: ''
             },
             Gallery: {
-                Avatar: '',
+                Thumbnail: '',
                 FolderId: ''
             },
         };

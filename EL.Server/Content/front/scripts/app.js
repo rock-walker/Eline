@@ -5,6 +5,18 @@ var App = function () {
     var isIE8 = false;
     var isIE9 = false;
     var isIE10 = false;
+
+    // theme layout color set
+    var layoutColorCodes = {
+        'blue': '#4b8df8',
+        'red': '#e02222',
+        'green': '#35aa47',
+        'purple': '#852b99',
+        'grey': '#555555',
+        'light-grey': '#fafafa',
+        'yellow': '#ffb848'
+    };
+
     var appHeader;
     var serviceMap;
     var movableServices;
@@ -238,6 +250,33 @@ var App = function () {
         } });
     };
 
+    // Handles Bootstrap Modals.
+    var handleModals = function() {
+        // fix stackable modal issue: when 2 or more modals opened, closing one of modal will remove .modal-open class. 
+        $('body').on('hide.bs.modal', function() {
+            if ($('.modal:visible').size() > 1 && $('html').hasClass('modal-open') == false) {
+                $('html').addClass('modal-open');
+            } else if ($('.modal:visible').size() <= 1) {
+                $('html').removeClass('modal-open');
+            }
+        });
+
+        $('body').on('show.bs.modal', '.modal', function () {
+            if ($(this).hasClass("modal-scroll")) {
+                $('body').addClass("modal-open-noscroll");
+            }
+        });
+
+        $('body').on('shown.bs.modal', '.modal', function() {
+            Calendar.init();
+        });
+
+        $('body').on('hide.bs.modal', '.modal', function() {
+            $('body').removeClass("modal-open-noscroll");
+        });
+    };
+
+
     var handleBuildUi = function() {
         appHeader = new AppHeader;
         serviceMap = new Map;
@@ -256,6 +295,10 @@ var App = function () {
 			handleFixedHeader();
         },
 
+        customInit: function() {
+            handleModals(); // handle modals - bootstrap dialogs
+        },
+
         initSearch: function() {
             handleSearch();
         },
@@ -263,6 +306,10 @@ var App = function () {
         buildUi: function () {
             //initMap();
             handleBuildUi();
+        },
+
+        isRTL: function() {
+            return isRTL;
         },
 
         getServiceMap: function() {
@@ -324,6 +371,15 @@ var App = function () {
             $(function(){
                 $('.grid-v1').mixitup();
             });    
+        },
+
+        // get layout color code by color name
+        getLayoutColorCode: function (name) {
+            if (layoutColorCodes[name]) {
+                return layoutColorCodes[name];
+            } else {
+                return '';
+            }
         }
 
     };

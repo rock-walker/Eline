@@ -2,46 +2,44 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EL.EntityModels;
+using EL.EntityModels.Contexts;
+using EL.EntityModels.Models;
 
 namespace EL.Logic.Controller
 {
-	public class Movable: IMovable
+	public class MovableItem: IMovable
 	{
 		private readonly MovablesContext _ctxMovables;
-		private readonly CategoryContext _ctxCategory;
 
-		public Movable()
+		public MovableItem()
 		{
 			_ctxMovables = new MovablesContext();
-			_ctxCategory = new CategoryContext();
 		}
 
-		public Task<IEnumerable<Movables>> GetByCategory(int id)
+		public Task<IEnumerable<Movable>> GetByCategory(int id)
 		{
-			var action = new Func<Task<IEnumerable<Movables>>>(() =>
+			var action = new Func<Task<IEnumerable<Movable>>>(() =>
 			{
-				var parentCatIds = (from c in _ctxCategory.Categories
+				var parentCatIds = (from c in _ctxMovables.Categories
 					where c.Parent == id
 					select c.Id).ToList();
 
-				var movableIds = (parentCatIds.Count > 0)
-					? (from p in parentCatIds
-						from cm in _ctxMovables.CategoriesToMovables
-						where cm.CategoryId == p
-						select cm.MovableId).ToList()
-					: (from cm in _ctxMovables.CategoriesToMovables
-						where cm.CategoryId == id
-						select cm.MovableId).ToList();
+				var getMovableIds = new Func<int, IEnumerable<Movable>>(x =>
+				{
+					var mIds = (
+									from cm in _ctxMovables.Movables
+									where cm.Category.Id == x
+									select cm
+								).ToList();
 
-				var res = from mId in movableIds
-					from mObj in _ctxMovables.Movables
-						.Include("Gallery")
-						.Include("Details")
-					where mObj.Id == mId
-					select mObj;
+					return mIds;
+				});
 
-				return Task.FromResult(res);
+				var movables = (parentCatIds.Any())
+					? parentCatIds.SelectMany(getMovableIds)
+					: getMovableIds(id);
+
+				return Task.FromResult(movables);
 			});
 
 			return action();

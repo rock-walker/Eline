@@ -94,19 +94,72 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountModels.cs" />
-    <Compile Include="Category.cs" />
-    <Compile Include="Details.cs" />
-    <Compile Include="Entrepreneur.cs" />
-    <Compile Include="Gallery.cs" />
-    <Compile Include="Map.cs" />
+    <Compile Include="BaseContext.cs" />
+    <Compile Include="Contexts\CalendarContext.cs" />
+    <Compile Include="Contexts\GeneralContext.cs" />
+    <Compile Include="Contexts\MigrationContext.cs" />
+    <Compile Include="Contexts\_CalendarMigrations\Configuration.cs" />
+    <Compile Include="Contexts\_EntrepreneursMigrations\201501051859198_23.cs" />
+    <Compile Include="Contexts\_EntrepreneursMigrations\201501051859198_23.Designer.cs">
+      <DependentUpon>201501051859198_23.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contexts\_EntrepreneursMigrations\Configuration.cs" />
+    <Compile Include="Contexts\_GeneralMigrations\201501051832011_23.cs" />
+    <Compile Include="Contexts\_GeneralMigrations\201501051832011_23.Designer.cs">
+      <DependentUpon>201501051832011_23.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contexts\_GeneralMigrations\Configuration.cs" />
+    <Compile Include="Contexts\_Migrations\201501072009275_45.cs" />
+    <Compile Include="Contexts\_Migrations\201501072009275_45.Designer.cs">
+      <DependentUpon>201501072009275_45.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contexts\_Migrations\201501072110025_test.cs" />
+    <Compile Include="Contexts\_Migrations\201501072110025_test.Designer.cs">
+      <DependentUpon>201501072110025_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contexts\_MovablesMigrations\201501071100575_11.cs" />
+    <Compile Include="Contexts\_MovablesMigrations\201501071100575_11.Designer.cs">
+      <DependentUpon>201501071100575_11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contexts\_MovablesMigrations\Configuration.cs" />
+    <Compile Include="Models\CalendarDay.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Contexts\EntrepreneursContext.cs" />
+    <Compile Include="Contexts\MovablesContext.cs" />
+    <Compile Include="Models\Details.cs" />
+    <Compile Include="DomainModels.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\Entrepreneur.cs" />
+    <Compile Include="Models\Gallery.cs" />
+    <Compile Include="Models\GeoMarker.cs" />
     <Compile Include="ModelHelpers\MenuBuilder.cs" />
-    <Compile Include="Movables.cs" />
+    <Compile Include="Models\Movable.cs" />
+    <Compile Include="Models\Reservation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Contexts\_Migrations\Configuration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Contexts\_EntrepreneursMigrations\201501051859198_23.resx">
+      <DependentUpon>201501051859198_23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contexts\_GeneralMigrations\201501051832011_23.resx">
+      <DependentUpon>201501051832011_23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contexts\_Migrations\201501072009275_45.resx">
+      <DependentUpon>201501072009275_45.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contexts\_Migrations\201501072110025_test.resx">
+      <DependentUpon>201501072110025_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contexts\_MovablesMigrations\201501071100575_11.resx">
+      <DependentUpon>201501071100575_11.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
