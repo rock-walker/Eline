@@ -39,6 +39,12 @@
 
             return (tmplData != undefined) ? this.underscoreTmpls.tmpl_cache[tmplId](tmplData)
                 : this.underscoreTmpls.tmpl_cache[tmplId];
+        },
+
+        'SLOTS': {
+            FREE: { value: 0, color: "green" },
+            RESERVED: { value: 1, color: "red" },
+            TENTATIVE: { value: 2, color: "purple"}
         }
     });
 })(jQuery)

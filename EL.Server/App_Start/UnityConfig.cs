@@ -1,10 +1,14 @@
 using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Runtime.Caching;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using EL.DataContracts.General;
+using EL.EntityModels.Contexts;
 using EL.Logic.ApplicationLevel;
 using EL.Logic.Controller;
 using EL.Logic.Core.Principal;
@@ -91,6 +95,20 @@ namespace EL.Server
 	    private static void WebApiConfig(IUnityContainer ioc)
 	    {
 		    ioc.RegisterType<IMovable, MovableItem>(new HierarchicalLifetimeManager());
+
+		    ioc.RegisterType<IElineServiceFactory, ElineServiceFactory>(new ContainerControlledLifetimeManager());
+		    ioc.RegisterType<IReserve, ElCalendar>(/*
+					new InjectionFactory(c => new ElCalendar(
+								ioc.Resolve<IElineServiceFactory>()
+							)
+						)*/
+				new HierarchicalLifetimeManager());
+
+			ioc.RegisterType<IElineService, EntrepreneursServiceProvider>(ServiceType.Entrepreneurs.ToString(),
+				new InjectionConstructor(new EntrepreneursContext()));
+			ioc.RegisterType<IElineService, MovableServiceProvider>(ServiceType.Movables.ToString(),
+				new InjectionConstructor(new MovablesContext()));
+			
 	    }
 
 		private static void PosConfig(IUnityContainer ioc)

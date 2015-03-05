@@ -2,7 +2,7 @@
 
 namespace EL.EntityModels.Contexts
 {
-	public class GeneralContext : BaseContext<GeneralContext, _GeneralMigrations.Configuration>
+	public class GeneralContext : BaseContext<GeneralContext>
 	{
 		public DbSet<DomainModels.BaseCategory> Categories { get; set; }
 	}

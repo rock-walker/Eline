@@ -267,8 +267,65 @@ var App = function () {
             }
         });
 
-        $('body').on('shown.bs.modal', '.modal', function() {
-            Calendar.init();
+        $('body').on('shown.bs.modal', '.modal', function (event) {
+            var date = new Date();
+
+            var button = $(event.relatedTarget);
+            var srvType = button.data('srvtype');
+            var srvId = button.data('srvid');
+
+            TimeRangesAggregator.collect(srvType, srvId, date)
+                                .done(function() {
+                                    var events = TimeRangesAggregator.getSlots();
+                                    Calendar.init(events);
+                                });
+            /*
+            var events = [
+                {
+                    title: 'All Day Event',
+                    start: new Date(y, m, 1),
+                    backgroundColor: App.getLayoutColorCode('yellow')
+                }, {
+                    title: 'Long Event',
+                    start: new Date(y, m, d - 5),
+                    end: new Date(y, m, d - 2),
+                    backgroundColor: App.getLayoutColorCode('green')
+                }, {
+                    title: 'Repeating Event',
+                    start: new Date(y, m, d - 3, 16, 0),
+                    allDay: false,
+                    backgroundColor: App.getLayoutColorCode('red')
+                }, {
+                    title: 'Repeating Event',
+                    start: new Date(y, m, d + 4, 16, 0),
+                    allDay: false,
+                    backgroundColor: App.getLayoutColorCode('green')
+                }, {
+                    title: 'Meeting',
+                    start: new Date(y, m, d, 10, 30),
+                    allDay: false,
+                }, {
+                    title: 'Lunch',
+                    start: new Date(y, m, d, 12, 0),
+                    end: new Date(y, m, d, 14, 0),
+                    backgroundColor: App.getLayoutColorCode('grey'),
+                    allDay: false,
+                }, {
+                    title: 'Birthday Party',
+                    start: new Date(y, m, d + 1, 19, 0),
+                    end: new Date(y, m, d + 1, 22, 30),
+                    backgroundColor: App.getLayoutColorCode('purple'),
+                    allDay: false,
+                }, {
+                    title: 'Click for Google',
+                    start: new Date(y, m, 28),
+                    end: new Date(y, m, 29),
+                    backgroundColor: App.getLayoutColorCode('yellow'),
+                    url: 'http://google.com/',
+                }
+            ];
+          
+            Calendar.init(events);*/
         });
 
         $('body').on('hide.bs.modal', '.modal', function() {

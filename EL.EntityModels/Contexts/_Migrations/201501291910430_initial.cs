@@ -3,7 +3,7 @@ namespace EL.EntityModels.Contexts._Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _45 : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -21,14 +21,18 @@ namespace EL.EntityModels.Contexts._Migrations
                 c => new
                     {
                         Id = c.Guid(nullable: false, identity: true),
+                        UtcDate = c.DateTime(nullable: false, defaultValueSql: "GETUTCDATE()"),
                         Category_Id = c.Int(),
                         Entrepreneurs_Id = c.Int(),
+                        Movable_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Categories", t => t.Category_Id)
                 .ForeignKey("dbo.Entrepreneurs", t => t.Entrepreneurs_Id)
+                .ForeignKey("dbo.Movables", t => t.Movable_Id)
                 .Index(t => t.Category_Id)
-                .Index(t => t.Entrepreneurs_Id);
+                .Index(t => t.Entrepreneurs_Id)
+                .Index(t => t.Movable_Id);
             
             CreateTable(
                 "dbo.Categories",
@@ -65,7 +69,7 @@ namespace EL.EntityModels.Contexts._Migrations
                         Mobile = c.String(),
                         Municipal = c.String(),
                         Email = c.String(),
-                        Chant = c.String(),
+                        Chat = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -170,6 +174,7 @@ namespace EL.EntityModels.Contexts._Migrations
             DropForeignKey("dbo.Movables", "Gallery_Id", "dbo.Gallery");
             DropForeignKey("dbo.Movables", "Details_Id", "dbo.Details");
             DropForeignKey("dbo.Movables", "Category_Id", "dbo.Categories");
+            DropForeignKey("dbo.CalendarDay", "Movable_Id", "dbo.Movables");
             DropForeignKey("dbo.Movables", "Ava_Id", "dbo.Avatars");
             DropForeignKey("dbo.Stuff", "Entrepreneurs_Id", "dbo.Entrepreneurs");
             DropForeignKey("dbo.Stuff", "Category_Id", "dbo.Categories");
@@ -185,6 +190,7 @@ namespace EL.EntityModels.Contexts._Migrations
             DropIndex("dbo.Movables", new[] { "Gallery_Id" });
             DropIndex("dbo.Movables", new[] { "Details_Id" });
             DropIndex("dbo.Movables", new[] { "Category_Id" });
+            DropIndex("dbo.CalendarDay", new[] { "Movable_Id" });
             DropIndex("dbo.Movables", new[] { "Ava_Id" });
             DropIndex("dbo.Stuff", new[] { "Entrepreneurs_Id" });
             DropIndex("dbo.Stuff", new[] { "Category_Id" });

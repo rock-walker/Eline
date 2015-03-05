@@ -1,17 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using EL.DataContracts.General;
+using EL.EntityModels.Models;
 
 namespace EL.Logic.Controller
 {
-	public class Calendar : IReserve
+	public class ElCalendar : IReserve
 	{
-		public Task<IEnumerable<ReservationItem>> GetDayReservations(DateTime dt)
+		//movable or entrepreneurs context should be
+		private readonly IElineServiceFactory _providerFactory;
+
+		public ElCalendar(IElineServiceFactory provider)
 		{
-			throw new NotImplementedException();
+			_providerFactory = provider;
+		}
+
+		public Task<ICollection<Reservation>> GetDayReservations(short serviceType, int serviceId, DateTime dt)
+		{
+			return _providerFactory.Create(serviceType).GetDayReservations(serviceId, dt);
 		}
 
 		public Task<DaySettings> GetDaySettings()

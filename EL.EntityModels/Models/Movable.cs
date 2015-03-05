@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EL.EntityModels.Models
 {
@@ -7,16 +8,6 @@ namespace EL.EntityModels.Models
 	{
 		public virtual Details Details { get; set; }
 		public virtual Gallery Gallery { get; set; }
+		public virtual ICollection<CalendarDay> CalendarDays { get; set; }
 	}
-	/*
-	[Table("CategoriesToMovables")]
-	public class CategoriesToMovables
-	{
-		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public virtual int Id { get; set; }
-		public virtual Category Category { get; set; }
-		public virtual Movable Movable { get; set; }
-	}
-	 * */
 }

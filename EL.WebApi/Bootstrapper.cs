@@ -51,6 +51,12 @@ namespace EL.WebApi
 				"api/movable/{action}/{id}",
 				new { module="api", controller = "movable", id = RouteParameter.Optional, action="get"}
 			);
+
+			routes.MapHttpRoute(
+				"Calendar",
+				"api/calendar/{action}/{srvType}/{srvId}",
+				new {module = "api", controller = "calendar", srvId = RouteParameter.Optional, srvType = RouteParameter.Optional}
+			);
 		}
 		
 		private void Initialize()

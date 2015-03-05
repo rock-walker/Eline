@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using EL.EntityModels.Contexts._MovablesMigrations;
 using EL.EntityModels.Models;
 
 namespace EL.EntityModels.Contexts

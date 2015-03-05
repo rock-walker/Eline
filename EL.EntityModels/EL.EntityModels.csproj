@@ -98,30 +98,18 @@
     <Compile Include="Contexts\CalendarContext.cs" />
     <Compile Include="Contexts\GeneralContext.cs" />
     <Compile Include="Contexts\MigrationContext.cs" />
-    <Compile Include="Contexts\_CalendarMigrations\Configuration.cs" />
-    <Compile Include="Contexts\_EntrepreneursMigrations\201501051859198_23.cs" />
-    <Compile Include="Contexts\_EntrepreneursMigrations\201501051859198_23.Designer.cs">
-      <DependentUpon>201501051859198_23.cs</DependentUpon>
+    <Compile Include="Contexts\_Migrations\201501291910430_initial.cs" />
+    <Compile Include="Contexts\_Migrations\201501291910430_initial.Designer.cs">
+      <DependentUpon>201501291910430_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Contexts\_EntrepreneursMigrations\Configuration.cs" />
-    <Compile Include="Contexts\_GeneralMigrations\201501051832011_23.cs" />
-    <Compile Include="Contexts\_GeneralMigrations\201501051832011_23.Designer.cs">
-      <DependentUpon>201501051832011_23.cs</DependentUpon>
+    <Compile Include="Contexts\_Migrations\201501292043053_reservations.cs" />
+    <Compile Include="Contexts\_Migrations\201501292043053_reservations.Designer.cs">
+      <DependentUpon>201501292043053_reservations.cs</DependentUpon>
     </Compile>
-    <Compile Include="Contexts\_GeneralMigrations\Configuration.cs" />
-    <Compile Include="Contexts\_Migrations\201501072009275_45.cs" />
-    <Compile Include="Contexts\_Migrations\201501072009275_45.Designer.cs">
-      <DependentUpon>201501072009275_45.cs</DependentUpon>
+    <Compile Include="Contexts\_Migrations\201502042004193_reservations1.cs" />
+    <Compile Include="Contexts\_Migrations\201502042004193_reservations1.Designer.cs">
+      <DependentUpon>201502042004193_reservations1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Contexts\_Migrations\201501072110025_test.cs" />
-    <Compile Include="Contexts\_Migrations\201501072110025_test.Designer.cs">
-      <DependentUpon>201501072110025_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Contexts\_MovablesMigrations\201501071100575_11.cs" />
-    <Compile Include="Contexts\_MovablesMigrations\201501071100575_11.Designer.cs">
-      <DependentUpon>201501071100575_11.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Contexts\_MovablesMigrations\Configuration.cs" />
     <Compile Include="Models\CalendarDay.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Contexts\EntrepreneursContext.cs" />
@@ -143,23 +131,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Contexts\_EntrepreneursMigrations\201501051859198_23.resx">
-      <DependentUpon>201501051859198_23.cs</DependentUpon>
+    <EmbeddedResource Include="Contexts\_Migrations\201501291910430_initial.resx">
+      <DependentUpon>201501291910430_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Contexts\_GeneralMigrations\201501051832011_23.resx">
-      <DependentUpon>201501051832011_23.cs</DependentUpon>
+    <EmbeddedResource Include="Contexts\_Migrations\201501292043053_reservations.resx">
+      <DependentUpon>201501292043053_reservations.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Contexts\_Migrations\201501072009275_45.resx">
-      <DependentUpon>201501072009275_45.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Contexts\_Migrations\201501072110025_test.resx">
-      <DependentUpon>201501072110025_test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Contexts\_MovablesMigrations\201501071100575_11.resx">
-      <DependentUpon>201501071100575_11.cs</DependentUpon>
+    <EmbeddedResource Include="Contexts\_Migrations\201502042004193_reservations1.resx">
+      <DependentUpon>201502042004193_reservations1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

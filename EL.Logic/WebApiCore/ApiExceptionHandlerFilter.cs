@@ -10,9 +10,9 @@ namespace EL.Logic.WebApiCore
 		readonly ApiExceptionConvertor _exceptionConvertor;
 		readonly ILogger _log;
 
-		public ApiExceptionHandlerFilter(/*ApiExceptionConvertor exceptionConvertor,*/ ILogger log)
+		public ApiExceptionHandlerFilter(ApiExceptionConvertor exceptionConvertor, ILogger log)
 		{
-			_exceptionConvertor = new ApiExceptionConvertor(new ExceptionSettings());//exceptionConvertor;
+			_exceptionConvertor = exceptionConvertor; //new ApiExceptionConvertor(new ExceptionSettings());//
 			_log = log;
 		}
 

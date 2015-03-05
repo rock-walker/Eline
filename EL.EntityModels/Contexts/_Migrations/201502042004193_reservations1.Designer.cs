@@ -7,13 +7,13 @@ namespace EL.EntityModels.Contexts._Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.2-21211")]
-    public sealed partial class test : IMigrationMetadata
+    public sealed partial class reservations1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(test));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(reservations1));
         
         string IMigrationMetadata.Id
         {
-            get { return "201501072110025_test"; }
+            get { return "201502042004193_reservations1"; }
         }
         
         string IMigrationMetadata.Source

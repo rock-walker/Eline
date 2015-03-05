@@ -91,9 +91,13 @@
     <Compile Include="ApplicationLevel\UnityHttpControllerFactory.cs" />
     <Compile Include="ApplicationLevel\UnityResolver.cs" />
     <Compile Include="Controller\Calendar.cs" />
+    <Compile Include="Controller\ElineServiceFactory.cs" />
+    <Compile Include="Controller\EntrepreneursServiceProvider.cs" />
     <Compile Include="Controller\ICalendar.cs" />
+    <Compile Include="Controller\IElineService.cs" />
     <Compile Include="Controller\IMovable.cs" />
     <Compile Include="Controller\Movable.cs" />
+    <Compile Include="Controller\MovableServiceProvider.cs" />
     <Compile Include="Core\LocaleReader.cs" />
     <Compile Include="Core\Principal\ISessionPrinciple.cs" />
     <Compile Include="Core\Principal\SessionPrincipal.cs" />
@@ -112,6 +116,7 @@
     <Compile Include="WebApiCore\ApiExceptionConvertor.cs" />
     <Compile Include="WebApiCore\ApiExceptionHandlerFilter.cs" />
     <Compile Include="CuttingEdge\ExceptionSettings.cs" />
+    <Compile Include="WebApiCore\ElServiceController.cs" />
     <Compile Include="WebApiCore\Resources\ApiErrors.Designer.cs" />
   </ItemGroup>
   <ItemGroup>

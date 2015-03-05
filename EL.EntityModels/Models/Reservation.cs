@@ -10,7 +10,10 @@ namespace EL.EntityModels.Models
 		[Key]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public Guid Id { get; set; }
-		public long Start { get; set; }
-		public long End { get; set; }
+		public short StartH { get; set; }
+		public short StartM { get; set; }
+		public short EndH { get; set; }
+		public short EndM { get; set; }
+		public short Status { get; set; }
 	}
 }

@@ -565,7 +565,7 @@
     <Content Include="Scripts\collections\Movable.js" />
     <Content Include="Scripts\compositeViews\Calendar.js" />
     <Content Include="Scripts\compositeViews\Movables.js" />
-    <Content Include="Scripts\models\CldTimeFrame.js" />
+    <Content Include="Scripts\models\TimeRange.js" />
     <Content Include="Scripts\thirdParty\BsDialog\bootstrap-modal.js" />
     <Content Include="Scripts\thirdParty\BsDialog\bootstrap-modalmanager.js" />
     <Content Include="Scripts\thirdParty\jquery.mobile-1.1.0.js" />
@@ -768,6 +768,10 @@
     <ProjectReference Include="..\EL.Core\EL.Core.csproj">
       <Project>{826d4f9a-5a8a-41d4-97cf-628bb6d225ac}</Project>
       <Name>EL.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EL.DataContracts.General\EL.DataContracts.General.csproj">
+      <Project>{76ef448f-7bbf-4956-8a96-7ce699b4f468}</Project>
+      <Name>EL.DataContracts.General</Name>
     </ProjectReference>
     <ProjectReference Include="..\EL.EntityModels\EL.EntityModels.csproj">
       <Project>{dc1b4790-b09d-4054-9026-c7acd29a12a2}</Project>

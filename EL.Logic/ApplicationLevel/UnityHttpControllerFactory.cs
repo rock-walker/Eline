@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
+using EL.Logic.Controller;
 using Microsoft.Practices.Unity;
 
 namespace EL.Logic.ApplicationLevel
@@ -22,6 +17,10 @@ namespace EL.Logic.ApplicationLevel
 	
 		public IHttpController Create(System.Net.Http.HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
 		{
+			/*
+			if (controllerDescriptor.ControllerName == "Calendar")
+				_container.Resolve<IElineService>("entrepreneurs");
+			*/
 			return (IHttpController) _container.Resolve(controllerType);
 		}
 	} 

@@ -26,7 +26,6 @@ namespace EL.EntityModels.Contexts
 
 		//General
 		public DbSet<DomainModels.BaseCategory> Categories { get; set; }
-
 		public DbSet<DomainModels.AvatarImage> Avatars { get; set; }
 	}
 }

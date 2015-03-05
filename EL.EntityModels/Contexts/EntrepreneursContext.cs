@@ -10,5 +10,6 @@ namespace EL.EntityModels.Contexts
 		public DbSet<DomainModels.BaseCategory> Categories { get; set; }
 		public DbSet<Contact> Contacts { get; set; }
 		public DbSet<GeoMarker> GeoMarkers { get; set; }
+		public DbSet<CalendarDay> CalendarDays { get; set; }
 	}
 }

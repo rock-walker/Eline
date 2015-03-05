@@ -10,7 +10,11 @@ namespace EL.EntityModels.Models
 	{
 		[Key]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public virtual Guid Id { get; set; }
+		public Guid Id { get; set; }
+
+		[Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+		public DateTime UtcDate { get; set; }
+
 		public virtual ICollection<Reservation> Reservations { get; set; }
 		public virtual Category Category { get; set; }
 	}

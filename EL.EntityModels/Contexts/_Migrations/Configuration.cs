@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using System.Data.Entity.Migrations.Model;
+using System.Data.Entity.SqlServer;
+
 namespace EL.EntityModels.Contexts._Migrations
 {
     using System.Data.Entity.Migrations;
@@ -6,8 +10,10 @@ namespace EL.EntityModels.Contexts._Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
+	        AutomaticMigrationDataLossAllowed = true;
             MigrationsDirectory = @"Contexts\_Migrations";
+			SetSqlGenerator("System.Data.SqlClient", new CustomSqlServerMigrationSqlGenerator());
         }
 
         protected override void Seed(MigrationContext context)
@@ -25,5 +31,38 @@ namespace EL.EntityModels.Contexts._Migrations
             //    );
             //
         }
+
+		internal class CustomSqlServerMigrationSqlGenerator : SqlServerMigrationSqlGenerator
+		{
+			protected override void Generate(AddColumnOperation addColumnOperation)
+			{
+				SetCreatedUtcColumn(addColumnOperation.Column);
+
+				base.Generate(addColumnOperation);
+			}
+
+			protected override void Generate(CreateTableOperation createTableOperation)
+			{
+				SetCreatedUtcColumn(createTableOperation.Columns);
+
+				base.Generate(createTableOperation);
+			}
+
+			private static void SetCreatedUtcColumn(IEnumerable<ColumnModel> columns)
+			{
+				foreach (var columnModel in columns)
+				{
+					SetCreatedUtcColumn(columnModel);
+				}
+			}
+
+			private static void SetCreatedUtcColumn(PropertyModel column)
+			{
+				if (column.Name == "UtcDate")
+				{
+					column.DefaultValueSql = "GETUTCDATE()";
+				}
+			}
+		}
     }
 }
