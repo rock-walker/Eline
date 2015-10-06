@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using EL.Server.Base;
+using EL.Server.Filters;
 
 namespace EL.Server.Areas.Admin.Controllers
 {
-    public class HomeController : Controller
+    [Authorize]
+    [InitializeSimpleMembership]
+    public class HomeController : GenericController
     {
         //
         // GET: /Admin/Home/

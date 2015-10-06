@@ -3,8 +3,8 @@
 @using Resources
 
 <head>
-    @Styles.Render("~cssBundle/adminHome")
-    <title>@General.ResourceManager.GetString(ViewData["AdminTitle"].ToString(), General.Culture)</title>
+    @Styles.Render("~/cssBundle/adminHome")
+    <title>@General.ResourceManager.GetString(ViewData["Title"].ToString(), General.Culture)</title>
     @Header.adminInsert(Url)
     @L10n.Insert(Server, (ViewData["locale"] ?? String.Empty).ToString(), (ViewData["resourceTemplate"] ?? String.Empty).ToString(), Url)
 </head>

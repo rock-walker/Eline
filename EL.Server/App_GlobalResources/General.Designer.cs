@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Eline Administrator.
+        /// </summary>
+        internal static string AdminTitle {
+            get {
+                return ResourceManager.GetString("AdminTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Electronic line.
         /// </summary>
         internal static string AppType {

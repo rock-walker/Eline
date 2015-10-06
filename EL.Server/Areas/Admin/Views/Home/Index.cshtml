@@ -1,9 +1,40 @@
-﻿
+﻿@using System.Web.Optimization
+@using EL.Logic.ViewHelpers;
 @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-<body>
-    <div>
-        
-    </div>
-</body>
+
+@section Header
+{
+    @Html.Partial("~/Areas/Admin/Views/Base/Header.cshtml")
+}
+
+@section PersonalPanel
+{
+    @Html.Partial("~/Areas/Admin/Views/Front/PersonalPanel.cshtml")
+}
+
+
+<div>
+    
+</div>
+
+@section Home
+{
+    @Scripts.Render("~/jsBundle/admin")
+    <script>
+        jQuery(document).ready(function() {    
+            App.init(); // initlayout and core plugins
+            Index.init();
+            Index.initJQVMAP(); // init index page's custom scripts
+            Index.initCalendar(); // init index page's custom scripts
+            Index.initCharts(); // init index page's custom scripts
+            Index.initChat();
+            Index.initMiniCharts();
+            Index.initDashboardDaterange();
+            Index.initIntro();
+            Tasks.initDashboardWidget();
+        });
+    </script>
+}
+

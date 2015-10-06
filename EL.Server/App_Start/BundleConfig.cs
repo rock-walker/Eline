@@ -85,7 +85,14 @@ namespace EL.Server
 
 		private static void RegisterAdminStyleBundles(BundleCollection bundles)
 		{
-			//bundles.Add(new StyleBundle("/cssBundle/adminHome"));
+			bundles.Add(new StyleBundle("~/cssBundle/adminHome")
+                .Include("~/Content/admin/css/custom.css")
+                .Include("~/Content/admin/css/style-metronic.css")
+                .Include("~/Content/admin/css/style-responsive.css")
+                .Include("~/Content/admin/css/style.css"));
+
+            bundles.Add(new ScriptBundle("~/jsBundle/admin")
+                .IncludeDirectory("~/Content/admin/scripts", "*.js", true));
 		}
 	}
 }
